@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin-as-a-Service – geschke.group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#23293a; --bg2:#2c3448; --bg3:#333d56;
+  --line:rgba(255,255,255,0.08); --line2:rgba(255,255,255,0.15);
+  --t1:#e8edf2; --t2:#8a9bb0; --t3:#7a8fa8;
+  --teal:#3b9eff; --teal-dim:rgba(59,158,255,0.1); --teal-glow:rgba(59,158,255,0.05);
+  --red-dim:rgba(240,100,90,0.13); --red-t:#f0796e;
+  --green-acc:#22c97a; --green-dim:rgba(34,201,122,0.1);
+}
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--t1); line-height:1.6; font-size:15px; -webkit-font-smoothing:antialiased; }
+
+/* ── LAYOUT ── */
+.wrap { width:100%; padding:0 1.25rem; margin:0 auto; }
+
+/* ── NAV ── */
+nav { position:sticky; top:0; z-index:100; background:rgba(35,41,58,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:0 1.25rem; }
+.nav-inner { height:52px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:var(--t1); text-decoration:none; }
+.nav-logo span { color:var(--teal); }
+.nav-links { display:none; }
+.nav-cta { font-size:13px; font-weight:500; color:#0d1117; background:var(--teal); padding:8px 16px; border-radius:6px; text-decoration:none; white-space:nowrap; }
+
+/* ── HERO ── */
+.hero { border-bottom:1px solid var(--line); }
+.hero-inner { display:flex; flex-direction:column; gap:2rem; padding:2.5rem 0; }
+.hero-eyebrow { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1.25rem; display:flex; align-items:center; gap:10px; }
+.hero-eyebrow::before { content:''; display:block; width:20px; height:1px; background:var(--teal); }
+h1 { font-family:'Syne',sans-serif; font-size:32px; font-weight:700; line-height:1.08; letter-spacing:-0.02em; margin-bottom:1.25rem; }
+h1 .accent { color:var(--teal); }
+h1 .dim { color:var(--t2); font-weight:400; }
+.hero-sub { font-size:15px; line-height:1.75; color:var(--t2); margin-bottom:2rem; }
+.hero-actions { display:flex; flex-direction:column; gap:.875rem; }
+.btn-primary { font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:#0d1117; background:var(--teal); padding:13px 24px; border-radius:8px; text-decoration:none; display:block; text-align:center; }
+.btn-ghost { font-size:14px; color:var(--t2); text-decoration:none; display:flex; align-items:center; gap:6px; }
+.hero-anim-box { background:var(--bg2); border:1px solid var(--line2); border-radius:16px; padding:1.25rem; }
+.hero-quote { background:var(--teal-dim); border:1px solid rgba(59,158,255,0.15); border-radius:12px; padding:1.125rem 1.25rem; }
+.hero-quote p { font-size:14px; line-height:1.65; color:var(--t1); font-style:italic; }
+.hero-quote cite { display:block; margin-top:8px; font-size:12px; color:var(--t2); font-style:normal; }
+
+/* ── SECTIONS ── */
+section { border-bottom:1px solid var(--line); }
+.sec-pad { padding:3rem 0; }
+.sec-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+.sec-label::before { content:''; display:block; width:16px; height:1px; background:var(--teal); }
+h2 { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; line-height:1.15; letter-spacing:-0.02em; margin-bottom:.875rem; }
+.sec-intro { font-size:15px; line-height:1.75; color:var(--t2); }
+
+/* ── PROBLEM ── */
+.problem-grid { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+.problem-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.25rem; position:relative; overflow:hidden; }
+.problem-card.bad { border-color:rgba(240,121,110,0.2); }
+.problem-card.bad::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red-t); opacity:.5; }
+.problem-card.good { border-color:rgba(34,201,122,0.25); }
+.problem-card.good::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--green-acc); }
+.problem-tag { font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:.875rem; }
+.problem-tag.bad { color:var(--red-t); background:var(--red-dim); }
+.problem-tag.good { color:var(--green-acc); background:var(--green-dim); }
+.problem-scenario { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; margin-bottom:.4rem; line-height:1.3; }
+.problem-desc { font-size:13px; color:var(--t2); line-height:1.65; }
+
+/* ── HOW ── */
+.how-grid { display:flex; flex-direction:column; gap:2rem; margin-top:2rem; }
+.how-steps { display:flex; flex-direction:column; }
+.how-step { display:flex; gap:1rem; padding:1.25rem 0; border-bottom:1px solid var(--line); }
+.how-step:first-child { padding-top:0; }
+.how-step:last-child { border-bottom:none; padding-bottom:0; }
+.step-n { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--teal); width:24px; flex-shrink:0; padding-top:2px; }
+.step-title { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; margin-bottom:4px; }
+.step-desc { font-size:13px; color:var(--t2); line-height:1.65; }
+.how-visual { background:var(--bg2); border:1px solid var(--line); border-radius:16px; padding:1.5rem; }
+
+/* ── COMPARE ── */
+.compare-wrap { margin-top:2rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.compare-table { width:100%; border-collapse:collapse; min-width:520px; }
+.compare-table th { padding:12px 14px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; text-align:left; border-bottom:1px solid var(--line2); color:var(--t1); }
+.compare-table th.hl { background:var(--teal-dim); color:var(--teal); border-bottom-color:rgba(59,158,255,0.3); }
+.compare-table td { padding:12px 14px; font-size:12px; color:var(--t2); border-bottom:1px solid var(--line); vertical-align:middle; }
+.compare-table td.hl { background:var(--teal-glow); color:var(--t1); border-bottom-color:rgba(59,158,255,0.08); }
+.compare-table td:first-child { color:var(--t1); font-weight:500; }
+.compare-table tr:last-child td { border-bottom:none; }
+.cy { color:var(--green-acc); font-weight:500; }
+.cn { color:var(--red-t); }
+
+/* ── CTA ── */
+.cta-section { padding:4rem 0; text-align:center; position:relative; overflow:hidden; border-bottom:none; }
+.cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59,158,255,0.05) 0%, transparent 70%); pointer-events:none; }
+.cta-section h2 { font-size:26px; margin-bottom:.875rem; }
+.cta-sub { font-size:15px; color:var(--t2); line-height:1.7; margin:0 auto 2rem; }
+.cta-actions { display:flex; flex-direction:column; align-items:center; gap:.875rem; }
+.btn-outline { font-size:14px; color:var(--t1); border:1px solid var(--line2); padding:12px 24px; border-radius:8px; text-decoration:none; display:block; width:100%; max-width:280px; text-align:center; }
+
+/* ── FOOTER ── */
+footer { padding:1.75rem 0; border-top:1px solid var(--line); }
+.footer-inner { display:flex; flex-direction:column; gap:.875rem; }
+.footer-copy { font-size:12px; color:var(--t3); }
+.footer-badges { display:flex; gap:8px; flex-wrap:wrap; }
+.footer-badge { font-size:11px; color:var(--t3); border:1px solid var(--line); border-radius:20px; padding:3px 10px; }
+
+/* ── TABLET ── */
+@media (min-width: 640px) {
+  .wrap { padding:0 2rem; }
+  .hero-actions { flex-direction:row; }
+  .btn-primary { display:inline-block; width:auto; text-align:left; }
+  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .cta-actions { flex-direction:row; justify-content:center; }
+  .btn-outline { width:auto; }
+  .footer-inner { flex-direction:row; align-items:center; justify-content:space-between; }
+}
+
+/* ── DESKTOP ── */
+@media (min-width: 900px) {
+  .wrap { max-width:1020px; padding:0 2.5rem; }
+  nav { padding:0 2.5rem; }
+  .nav-inner { height:60px; }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-size:13px; color:var(--t2); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--t1); }
+  .hero-inner { flex-direction:row; align-items:center; gap:4rem; padding:5rem 0; }
+  .hero-inner > div:first-child { flex:1; }
+  .hero-right { flex:1; display:flex; flex-direction:column; gap:16px; }
+  h1 { font-size:clamp(36px,4.5vw,56px); }
+  .hero-sub { font-size:16px; }
+  .sec-pad { padding:6rem 0; }
+  h2 { font-size:clamp(26px,3vw,38px); }
+  .sec-intro { font-size:16px; }
+  .how-grid { flex-direction:row; gap:5rem; align-items:start; }
+  .how-visual { position:sticky; top:80px; flex:1; }
+  .how-steps { flex:1; }
+  .cta-section { padding:7rem 0; }
+  .cta-section h2 { font-size:clamp(28px,3vw,42px); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">geschke<span>.</span>group</a>
+    <ul class="nav-links">
+      <li><a href="#problem">Das Problem</a></li>
+      <li><a href="#modell">Das Modell</a></li>
+      <li><a href="#vergleich">Vergleich</a></li>
+    </ul>
+    <a href="https://geschke.group/kontakt.html" class="nav-cta">Gespräch anfragen</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Admin-as-a-Service</div>
+        <h1>Ihre IT.<br><span class="dim">Unser</span> <span class="accent">Team.</span></h1>
+        <p class="hero-sub">Was wäre, wenn Sie statt einer einzelnen IT-Person eine ganze Mannschaft erfahrener Systemadministratoren hätten — strukturiert, dokumentiert, jederzeit einsatzbereit?</p>
+        <div class="hero-actions">
+          <a href="https://geschke.group/kontakt.html" class="btn-primary">Gespräch anfragen</a>
+          <a href="#modell" class="btn-ghost">Wie es funktioniert →</a>
+        </div>
+      </div>
+            <div class="hero-right" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:1.5rem;">
+          <canvas id="bubble-canvas" width="520" height="380" style="width:100%;height:auto;display:block;border-radius:10px;"></canvas>
+        </div>
+        <div class="hero-quote">
+          <p>„Wir müssen Ihre IT nicht auswendig kennen. Wir haben sie dokumentiert."</p>
+          <cite>— Patrick Geschke, geschke.group</cite>
+        </div>
+      </div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Das Problem</div>
+    <h2>Das Problem ist nicht<br>die Person — es ist die Struktur.</h2>
+    <p class="sec-intro">Ob Festanstellung, Freelancer oder externer Dienstleister — sobald IT-Wissen bei einer einzigen Person liegt, entsteht eine strukturelle Abhängigkeit. Die gute Nachricht: die lässt sich lösen.</p>
+    <div class="problem-grid">
+      <div class="problem-card bad">
+        <span class="problem-tag bad">Festanstellung</span>
+        <div class="problem-scenario">Eine Person trägt alles — allein.</div>
+        <p class="problem-desc">Urlaub, Krankheit, Kündigung — sobald diese eine Person ausfällt, steht die IT still. Nicht weil sie schlecht ist, sondern weil das Wissen nirgendwo sonst existiert.</p>
+      </div>
+      <div class="problem-card bad">
+        <span class="problem-tag bad">Freelancer</span>
+        <div class="problem-scenario">Flexibel — aber ohne Struktur.</div>
+        <p class="problem-desc">Externe Unterstützung ist wertvoll. Aber ohne gemeinsame Dokumentation, ohne geteiltes Wissen, ohne Backup-Person bleibt die Abhängigkeit dieselbe.</p>
+      </div>
+      <div class="problem-card bad">
+        <span class="problem-tag bad">Kein Übergabeprozess</span>
+        <div class="problem-scenario">Was passiert, wenn jemand geht?</div>
+        <p class="problem-desc">Konfigurationen, Passwörter, Prozesse — oft undokumentiert, oft nur in einem Kopf. Die Einarbeitung des Nachfolgers dauert Monate. Das muss nicht so sein.</p>
+      </div>
+      <div class="problem-card good" style="border-color:rgba(34,201,122,0.25)">
+        <span class="problem-tag good" style="color:#22c97a;background:rgba(34,201,122,0.1)">Admin-as-a-Service</span>
+        <div class="problem-scenario">Das Wissen gehört Ihnen. Nicht uns.</div>
+        <p class="problem-desc">Strukturen statt Einzelpersonen. Ihre IT ist dokumentiert, mehrfach bekannt und jederzeit übergabefähig — unabhängig davon, wer gerade im Urlaub ist oder das Team wechselt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modell">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Das Modell</div>
+    <h2>Ein Team hinter jedem Kunden</h2>
+    <p class="sec-intro">Nicht eine Person die aushilft — ein eingespieltes Team, das Ihre Systeme kennt wie ihre eigenen.</p>
+    <div class="how-grid">
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-title">Bestandsaufnahme & Dokumentation</div>
+            <p class="step-desc">Wir analysieren Ihre gesamte IT-Infrastruktur und dokumentieren sie vollständig — Server, Netzwerk, Dienste, Zugänge, Abhängigkeiten. Das ist die Basis für alles.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-title">Wissenstransfer im Team</div>
+            <p class="step-desc">Ihre Umgebung wird intern weitergegeben. Mindestens zwei Administratoren kennen Ihre Systeme im Detail — bevor wir in den laufenden Betrieb gehen.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-title">Laufender Betrieb</div>
+            <p class="step-desc">Monitoring, Patch-Management, Anfragen — alles läuft im Hintergrund. Sie merken es nur, wenn etwas schiefgeht. Und dann schnell.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-n">04</div>
+          <div>
+            <div class="step-title">Skalierung ohne Aufwand</div>
+            <p class="step-desc">Neuer Standort, mehr Mitarbeiter, neue Systeme — das Team wächst mit. Keine Stellenausschreibung, kein Onboarding, kein Risiko.</p>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:1.25rem;">Was im Hintergrund passiert</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:20px;">📖</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:2px;">Strukturierte Datenhaltung</div>
+              <div style="font-size:12px;color:var(--t2);">Ihre gesamte Infrastruktur ist dokumentiert — nachvollziehbar, versioniert, jederzeit abrufbar.</div>
+            </div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:20px;">🔐</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:2px;">Zentralisierte Zugangsverwaltung</div>
+              <div style="font-size:12px;color:var(--t2);">Least-Privilege-Prinzip: Zugänge werden zentral verwaltet, granular vergeben und vollständig auditiert.</div>
+            </div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:20px;">📡</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:2px;">24/7 Monitoring</div>
+              <div style="font-size:12px;color:var(--t2);">Probleme werden erkannt bevor Sie sie bemerken.</div>
+            </div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:20px;">🎫</span>
+            <div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:2px;">Ticketsystem</div>
+              <div style="font-size:12px;color:var(--t2);">Jede Anfrage wird nachvollziehbar erfasst und priorisiert.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vergleich">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Vergleich</div>
+    <h2>Was Sie wirklich bekommen</h2>
+    <p class="sec-intro">Drei Modelle, ein Ergebnis — aber nur eines schützt Ihr Unternehmen langfristig.</p>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:28%">Kriterium</th>
+            <th style="width:24%;background:rgba(240,121,110,0.06);">Festanstellung</th>
+            <th style="width:24%;background:rgba(240,121,110,0.06);">Freelancer</th>
+            <th class="hl" style="width:24%">Admin-as-a-Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wissen dokumentiert</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Selten</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Fast nie</td>
+            <td class="hl cy">✓ Immer</td>
+          </tr>
+          <tr>
+            <td>Ausfall durch Krankheit</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Kritisch</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Kritisch</td>
+            <td class="hl cy">✓ Kein Problem</td>
+          </tr>
+          <tr>
+            <td>Mehrere Experten verfügbar</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Nein</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Nein</td>
+            <td class="hl cy">✓ Ja</td>
+          </tr>
+          <tr>
+            <td>Kosten</td>
+            <td style="background:rgba(240,121,110,0.05);color:var(--red-t);">✕ 60–90k€/Jahr fix</td>
+            <td style="background:rgba(240,121,110,0.05);color:var(--red-t);">✕ Variabel, unkontrolliert</td>
+            <td class="hl cy">✓ Planbar & skalierbar</td>
+          </tr>
+          <tr>
+            <td>Einarbeitungszeit bei Wechsel</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ 3–6 Monate</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ 2–4 Monate</td>
+            <td class="hl cy">✓ Keine</td>
+          </tr>
+          <tr>
+            <td>Sofort skalierbar</td>
+            <td class="cn" style="background:rgba(240,121,110,0.05);">✕ Neue Stelle nötig</td>
+            <td style="background:rgba(240,121,110,0.05);color:var(--t2);">– Bedingt</td>
+            <td class="hl cy">✓ Ja, sofort</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta-section">
+    <div class="sec-label" style="justify-content:center">Jetzt starten</div>
+    <h2>Kein Pitch. Kein Angebot.<br>Ein ehrliches Gespräch.</h2>
+    <p class="cta-sub">Wir schauen uns gemeinsam an, wie Ihre IT heute aufgestellt ist — und was das Modell für Sie konkret bedeuten würde.</p>
+    <div class="cta-actions">
+      <a href="https://geschke.group/kontakt.html" class="btn-primary">Gespräch anfragen</a>
+      <a href="mailto:office@geschke.group" class="btn-outline">office@geschke.group</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-copy">© 2025 geschke.group · Gildestraße 2 · 49477 Ibbenbüren</span>
+      <div class="footer-badges">
+        <span class="footer-badge">DSGVO-konform</span>
+        <span class="footer-badge">Made in Germany</span>
+        <span class="footer-badge">Linux & Open Source</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+(function(){
+  var canvas = document.getElementById('bubble-canvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W=560, H=460;
+  canvas.width=W; canvas.height=H;
+
+  var BLUE='#3b9eff', GREEN='#22c97a', DARK='#252f42', BG='#1a2030';
+  var LABEL_H=60;
+  var UH=H-LABEL_H;
+
+  // Fixed positions
+  var FW=150, FH=44, FR=10;
+  var FX=120; // firm center x
+
+  var firms=[
+    {label:'Firma Müller', x:FX, y:LABEL_H+UH*0.2,  w:FW, h:FH, state:'idle'},
+    {label:'Firma Meyer',  x:FX, y:LABEL_H+UH*0.5,  w:FW, h:FH, state:'idle'},
+    {label:'Firma Kunze',  x:FX, y:LABEL_H+UH*0.8,  w:FW, h:FH, state:'idle'},
+  ];
+
+  var AR=26; // admin radius
+  var AX=460; // admin home x
+
+  var admins=[
+    {label:'Admin A', hx:AX, hy:LABEL_H+UH*0.18, x:AX, y:LABEL_H+UH*0.18, state:'idle'},
+    {label:'Admin B', hx:AX, hy:LABEL_H+UH*0.40, x:AX, y:LABEL_H+UH*0.40, state:'idle'},
+    {label:'Admin C', hx:AX, hy:LABEL_H+UH*0.62, x:AX, y:LABEL_H+UH*0.62, state:'idle'},
+    {label:'Admin D', hx:AX, hy:LABEL_H+UH*0.84, x:AX, y:LABEL_H+UH*0.84, state:'idle'},
+  ];
+
+  // n:m: [firmIdx, adminIdx]
+  var connections=[
+    [0,0],[0,1],[0,3],
+    [1,1],[1,2],[1,3],
+    [2,0],[2,2],[2,3],
+  ];
+
+  var activeFirm=null, activeAdmin=null, activeConn=null;
+  var phase='idle', phaseTimer=80, frame=0;
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+  function startSequence(){
+    var fi=Math.floor(Math.random()*firms.length);
+    var conns=connections.filter(function(c){return c[0]===fi;});
+    var chosen=pick(conns);
+    activeFirm=fi;
+    activeConn=chosen;
+    activeAdmin=admins[chosen[1]];
+    firms[fi].state='requesting';
+    phase='firm_pulse';  // phase 1: firm glows alone
+    phaseTimer=60;       // ~1 second
+  }
+
+  function firmRight(f){ return f.x+f.w/2; }
+  function firmTop(f){ return f.y; }
+
+  function rr(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+    ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r);
+    ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h);
+    ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r);
+    ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath();
+  }
+
+  function drawBG(){
+    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+    // left header
+    ctx.fillStyle='rgba(59,158,255,0.07)'; ctx.fillRect(0,0,W*0.47,LABEL_H);
+    ctx.fillStyle=BLUE; ctx.font='700 14px Inter,sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('IHRE UNTERNEHMEN', FX, LABEL_H/2 - 1);
+    // right header
+    ctx.fillStyle='rgba(34,201,122,0.07)'; ctx.fillRect(W*0.47,0,W*0.53,LABEL_H);
+    ctx.fillStyle=GREEN; ctx.font='700 14px Inter,sans-serif';
+    ctx.fillText('GESCHKE.GROUP ADMIN TEAM', W*0.47+(W*0.53)/2, LABEL_H/2 - 1);
+    // divider
+    ctx.save(); ctx.setLineDash([4,6]);
+    ctx.strokeStyle='rgba(255,255,255,0.08)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(W*0.47,LABEL_H); ctx.lineTo(W*0.47,H); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(0,LABEL_H); ctx.lineTo(W,LABEL_H); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawConnections(){
+    connections.forEach(function(conn){
+      var f=firms[conn[0]], a=admins[conn[1]];
+      var isActive=activeConn&&conn[0]===activeConn[0]&&conn[1]===activeConn[1];
+      var isBackup=activeFirm!==null&&conn[0]===activeFirm&&!isActive;
+      var isFirmActive=activeFirm!==null&&conn[0]===activeFirm;
+
+      // Active admin line: show during 'requesting' phase, fade out while moving
+      if(isActive&&phase==='moving') return; // hide completely while moving
+      if(isActive&&(phase==='arrived'||phase==='returning')) return; // hide after arrived
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(firmRight(f), f.y);
+      ctx.lineTo(a.hx-AR, a.hy);
+
+      if(isFirmActive&&(phase==='show_lines')){
+        // All responsible admin lines shown equally
+        ctx.strokeStyle=BLUE;
+        ctx.lineWidth=1.5;
+        ctx.globalAlpha=0.55;
+        ctx.setLineDash([4,5]);
+      } else if(isBackup&&(phase==='moving'||phase==='arrived')){
+        // Backup lines stay visible while active admin moves/arrives
+        ctx.strokeStyle=BLUE;
+        ctx.lineWidth=1.5;
+        ctx.globalAlpha=0.3;
+        ctx.setLineDash([4,5]);
+      } else {
+        ctx.strokeStyle='rgba(255,255,255,0.07)';
+        ctx.lineWidth=1;
+        ctx.globalAlpha=1;
+        ctx.setLineDash([3,7]);
+      }
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  function drawIndustrialBuilding(x, y, w, h, color, fillColor){
+    // Industrial building: wide rectangular body, multiple floors, tall chimneys
+    var bx = x - w/2;
+    var by = y - h/2;
+
+    // Main body — wide factory building
+    ctx.beginPath();
+    ctx.rect(bx, by + h*0.25, w, h*0.75);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Roofline — flat with small parapet bumps
+    ctx.beginPath();
+    ctx.rect(bx, by + h*0.22, w, h*0.06);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.stroke();
+
+    // Left chimney — tall and thin
+    ctx.beginPath();
+    ctx.rect(bx + w*0.12, by, w*0.09, h*0.28);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Right chimney — slightly shorter
+    ctx.beginPath();
+    ctx.rect(bx + w*0.28, by + h*0.06, w*0.07, h*0.22);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Windows row — industrial strip windows
+    var ww = w*0.13, wh = h*0.1;
+    var wy = by + h*0.38;
+    [0.08, 0.28, 0.50, 0.70].forEach(function(wx){
+      ctx.beginPath();
+      ctx.rect(bx + w*wx, wy, ww, wh);
+      ctx.fillStyle = color; ctx.globalAlpha = 0.18; ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = color; ctx.lineWidth = 0.8; ctx.stroke();
+    });
+
+    // Second row of windows
+    var wy2 = by + h*0.58;
+    [0.08, 0.28, 0.50, 0.70].forEach(function(wx){
+      ctx.beginPath();
+      ctx.rect(bx + w*wx, wy2, ww, wh);
+      ctx.fillStyle = color; ctx.globalAlpha = 0.12; ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = color; ctx.lineWidth = 0.8; ctx.stroke();
+    });
+
+    // Gate/entrance
+    ctx.beginPath();
+    ctx.rect(bx + w*0.38, by + h*0.72, w*0.24, h*0.28);
+    ctx.fillStyle = color; ctx.globalAlpha = 0.2; ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  function drawFirm(f, fi){
+    var isReq = f.state === 'requesting';
+    var pulse  = 0.5 + 0.5*Math.sin(frame*0.14);
+    var borderColor = isReq ? BLUE : '#3b4a62';
+    var fillColor = isReq ? '#1a2d44' : '#1e2d42';
+    var bw = f.w, bh = f.h;
+
+    // Badge
+    ctx.save();
+    if(isReq){ ctx.shadowColor = BLUE; ctx.shadowBlur = 18*pulse; }
+    rr(f.x - bw/2, f.y - bh/2, bw, bh, 10);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = borderColor; ctx.lineWidth = isReq ? 2 : 1; ctx.stroke();
+    ctx.restore();
+
+    // Pulsing outer ring
+    if(isReq){
+      ctx.save();
+      ctx.globalAlpha = (1-pulse)*0.4;
+      ctx.strokeStyle = BLUE; ctx.lineWidth = 2;
+      rr(f.x - bw/2 - 6*pulse, f.y - bh/2 - 6*pulse, bw + 12*pulse, bh + 12*pulse, 13);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Centered label
+    ctx.fillStyle = isReq ? '#ffffff' : '#c8d4e0';
+    ctx.font = (isReq ? '600' : '500') + ' 13px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(f.label, f.x, f.y - 1);
+
+    // Anfrage badge above
+    if(isReq){
+      ctx.save();
+      ctx.globalAlpha = 0.7 + 0.3*pulse;
+      ctx.fillStyle = BLUE;
+      ctx.font = '500 10px Inter,sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+      ctx.fillText('Anfrage', f.x, f.y - bh/2 - 8);
+      ctx.restore();
+    }
+  }
+
+  function drawHeadsetAdmin(x, y, r, color, fillColor, isBusy){
+    var s = r / 28; // scale factor
+
+    ctx.save();
+
+    // Head circle
+    ctx.beginPath();
+    ctx.arc(x, y - 4*s, 12*s, 0, Math.PI*2);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Shoulders / body silhouette
+    ctx.beginPath();
+    ctx.moveTo(x - 18*s, y + r - 2*s);
+    ctx.quadraticCurveTo(x - 18*s, y + 10*s, x - 10*s, y + 8*s);
+    ctx.quadraticCurveTo(x, y + 4*s, x + 10*s, y + 8*s);
+    ctx.quadraticCurveTo(x + 18*s, y + 10*s, x + 18*s, y + r - 2*s);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Headset band (arc over head)
+    ctx.beginPath();
+    ctx.arc(x, y - 4*s, 14*s, Math.PI, 0, false);
+    ctx.strokeStyle = color; ctx.lineWidth = 2*s; ctx.stroke();
+
+    // Left ear cup
+    ctx.beginPath();
+    ctx.arc(x - 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Right ear cup
+    ctx.beginPath();
+    ctx.arc(x + 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Mic arm (small line down-right from left ear cup)
+    ctx.beginPath();
+    ctx.moveTo(x - 14*s, y - 1*s);
+    ctx.lineTo(x - 9*s,  y + 5*s);
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5*s; ctx.stroke();
+
+    // Mic tip dot
+    ctx.beginPath();
+    ctx.arc(x - 9*s, y + 5*s, 2*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
+
+    // Outer glow ring when busy
+    if(isBusy){
+      ctx.beginPath();
+      ctx.arc(x, y, r + 4, 0, Math.PI*2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.35 + 0.25*Math.sin(frame*0.15);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+
+    ctx.restore();
+  }
+
+  function drawAdmin(a, ai){
+    var isBusy = a.state === 'moving' || a.state === 'arrived';
+    var color  = isBusy ? GREEN : BLUE;
+    var fillColor = isBusy ? '#162820' : '#1e2d42';
+
+    ctx.save();
+    if(isBusy){ ctx.shadowColor = GREEN; ctx.shadowBlur = 16; }
+    drawHeadsetAdmin(a.x, a.y - 6, AR, color, fillColor, isBusy);
+    ctx.restore();
+
+    // Label below
+    ctx.fillStyle = color;
+    ctx.font = (isBusy ? '600' : '500') + ' 11px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText(a.label, a.x, a.y + AR - 6);
+  }
+
+  function tick(){
+    drawBG();
+    drawConnections();
+    firms.forEach(drawFirm);
+    admins.forEach(drawAdmin);
+
+    if(phase==='idle'){
+      if(--phaseTimer<=0) startSequence();
+
+    } else if(phase==='firm_pulse'){
+      // Firm glows alone — no lines yet
+      if(--phaseTimer<=0){
+        phase='show_lines'; // phase 2: show dashed lines
+        phaseTimer=30;      // ~0.5 second
+      }
+
+    } else if(phase==='show_lines'){
+      // Lines visible — admin not moving yet
+      if(--phaseTimer<=0){
+        activeAdmin.state='moving';
+        phase='moving';     // phase 3: admin moves
+      }
+
+    } else if(phase==='moving'){
+      var f=firms[activeFirm];
+      var tx=firmRight(f)+AR+4, ty=f.y;
+      var dx=tx-activeAdmin.x, dy=ty-activeAdmin.y;
+      activeAdmin.x+=dx*0.09; activeAdmin.y+=dy*0.09;
+      if(Math.sqrt(dx*dx+dy*dy)<3){
+        activeAdmin.state='arrived';
+        phase='arrived'; phaseTimer=100;
+      }
+
+    } else if(phase==='arrived'){
+      var f=firms[activeFirm];
+      activeAdmin.x=firmRight(f)+AR+4;
+      activeAdmin.y=f.y;
+      if(--phaseTimer<=0){
+        firms[activeFirm].state='idle';
+        activeAdmin.state='returning';
+        phase='returning';
+      }
+
+    } else if(phase==='returning'){
+      var dx=activeAdmin.hx-activeAdmin.x, dy=activeAdmin.hy-activeAdmin.y;
+      activeAdmin.x+=dx*0.08; activeAdmin.y+=dy*0.08;
+      if(Math.sqrt(dx*dx+dy*dy)<3){
+        activeAdmin.x=activeAdmin.hx; activeAdmin.y=activeAdmin.hy;
+        activeAdmin.state='idle';
+        activeAdmin=null; activeFirm=null; activeConn=null;
+        phase='idle'; phaseTimer=45;
+      }
+    }
+
+    frame++;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>

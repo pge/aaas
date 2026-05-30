@@ -1,0 +1,16 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Node (falls später Build-Tooling dazukommt)
+node_modules/
+dist/
+.cache/
