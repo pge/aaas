@@ -7,7 +7,7 @@
 <meta name="description" content="geschke.group aus Ibbenbüren: Verstärkung für Ihre IT oder Betrieb als externe IT-Abteilung. Open Source, Daten in Deutschland, DSGVO-konform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -44,7 +44,7 @@
   --text-5xl: 3rem;
 
   --max-width: 1120px;
-  --section-padding: 96px 0;
+  --section-padding: 112px 0;
   --card-padding: 28px 32px;
   --card-radius: 8px;
 }
@@ -210,8 +210,8 @@ body {
 }
 
 .section__head {
-  padding-bottom: 32px;
-  margin-bottom: 48px;
+  padding-bottom: 0;
+  margin-bottom: 56px;
   border-bottom: 1px solid var(--color-border-strong);
   max-width: 720px;
 }
@@ -221,9 +221,9 @@ body {
 }
 
 .section__label {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 12px;
@@ -235,7 +235,7 @@ body {
   font-size: var(--text-3xl);
   line-height: 1.2;
   color: var(--color-text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .section__intro {
@@ -271,11 +271,15 @@ body {
 
 .hero__title {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: var(--text-4xl);
-  line-height: 1.15;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1.1;
   color: var(--color-text-primary);
   margin-bottom: 12px;
+}
+
+.hero__title-accent {
+  color: var(--color-accent);
 }
 
 .hero__subtitle {
@@ -300,10 +304,10 @@ body {
 }
 
 .hero__panel {
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
   border-radius: var(--card-radius);
-  padding: 28px 32px;
+  padding: 32px;
 }
 
 .hero__panel-title {
@@ -331,8 +335,8 @@ body {
 }
 
 .hero__facts .icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   margin-top: 2px;
 }
 
@@ -365,9 +369,42 @@ body {
   border-color: var(--color-accent);
 }
 
-.section--subtle .card {
+.section--subtle .card:not(.card--problem) {
   border-color: var(--color-border-strong);
   box-shadow: var(--color-card-shadow-raised);
+}
+
+/* Problemfeld-Cards */
+.card--problem {
+  border: none;
+  box-shadow: var(--color-card-shadow);
+}
+
+.card--problem:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.05);
+  border-color: transparent;
+}
+
+.card--problem .card__title {
+  font-weight: 700;
+}
+
+.icon-wrap {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EFF6FF;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.icon-wrap .icon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
 }
 
 .card__title {
@@ -397,6 +434,10 @@ body {
   gap: 24px;
 }
 
+.mode-card {
+  position: relative;
+}
+
 .mode-card__tag {
   font-size: var(--text-xs);
   font-weight: 500;
@@ -404,6 +445,33 @@ body {
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 12px;
+}
+
+.mode-card--featured {
+  border: 2px solid var(--color-accent);
+}
+
+@media (min-width: 900px) {
+  .mode-card--featured .mode-card__tag {
+    padding-right: 140px;
+  }
+}
+
+.mode-card--featured:hover {
+  border-color: var(--color-accent);
+}
+
+.mode-card__badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #EFF6FF;
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.3;
 }
 
 .mode-list {
@@ -480,7 +548,10 @@ body {
   padding: var(--card-padding);
 }
 
-.notfall .card__title { margin-bottom: 8px; }
+.notfall .card__title {
+  margin-bottom: 8px;
+  color: var(--color-accent);
+}
 
 /* Team list */
 .team-list {
@@ -542,9 +613,9 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--color-bg-subtle);
-  border-top: 1px solid var(--color-border-strong);
-  padding: 24px 0;
+  background: var(--color-bg-dark);
+  border-top: none;
+  padding: 32px 0;
 }
 
 .footer__inner {
@@ -557,9 +628,12 @@ body {
 .footer__logo {
   font-weight: 600;
   font-size: var(--text-sm);
-  color: var(--color-text-primary);
+  color: #FFFFFF;
   text-decoration: none;
+  transition: color 0.15s ease;
 }
+
+.footer__logo:hover { color: #E2E8F0; }
 
 .footer__links {
   display: flex;
@@ -570,27 +644,26 @@ body {
 
 .footer__links a {
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  color: #94A3B8;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
-.footer__links a:hover { color: var(--color-text-secondary); }
+.footer__links a:hover { color: #FFFFFF; }
 
 .footer__copy {
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  color: #94A3B8;
 }
 
 .footer__meta {
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  margin-top: 8px;
+  color: #64748B;
+  margin-top: 12px;
 }
 
 /* Tablet */
 @media (min-width: 640px) {
-  .hero__title { font-size: var(--text-5xl); }
   .hero__actions { flex-direction: row; }
   .grid-2 { grid-template-columns: 1fr 1fr; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
@@ -621,9 +694,15 @@ body {
 }
 
 @media (max-width: 899px) {
-  :root { --section-padding: 64px 0; }
+  :root { --section-padding: 72px 0; }
   .hero { padding: 48px 0 64px; }
+  .hero__title { font-size: 2.25rem; }
   .hero__panel { margin-top: 8px; }
+  .mode-card__badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
 }
 </style>
 </head>
@@ -650,7 +729,7 @@ body {
     <div class="hero__grid">
       <div>
         <p class="hero__label">IT-Partner für die Region</p>
-        <h1 class="hero__title">Verstärkung für Ihre IT.</h1>
+        <h1 class="hero__title">Verstärkung für <span class="hero__title-accent">Ihre IT.</span></h1>
         <p class="hero__subtitle">Aus der Region. Auf Open Source.</p>
         <p class="hero__text">Ihre IT-Abteilung ist am Limit? Wir entlasten Ihr Team bei Spitzen und Spezialthemen — oder übernehmen den Betrieb als Ihre externe IT-Abteilung. Persönlich, regional verankert und auf offene, datensouveräne Technologie gesetzt.</p>
         <div class="hero__actions">
@@ -704,23 +783,23 @@ body {
       <p class="section__intro">Viele IT-Abteilungen — gerade in Verwaltung, Stadtwerken und regionalem Mittelstand — arbeiten am Anschlag: Fachkräftemangel, wachsende Anforderungen und teure Lizenzmodelle.</p>
     </header>
     <div class="section__body grid-4">
-      <article class="card">
-        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <article class="card card--problem">
+        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3 class="card__title">Personalengpass</h3>
         <p class="card__text">Offene Stellen bleiben monatelang unbesetzt, das bestehende Team fängt alles auf. Projekte bleiben liegen, weil der Alltag schon voll ist.</p>
       </article>
-      <article class="card">
-        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+      <article class="card card--problem">
+        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
         <h3 class="card__title">Wissen auf wenigen Schultern</h3>
         <p class="card__text">Fällt eine Schlüsselperson aus, wird es eng. Vieles ist nur in Köpfen, nicht dokumentiert — und damit nicht vertretbar.</p>
       </article>
-      <article class="card">
-        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <article class="card card--problem">
+        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3 class="card__title">Teure Lizenz-Abhängigkeit</h3>
         <p class="card__text">Jahr für Jahr steigende Lizenzkosten, Funktionen hinter Paywalls, Daten in fremden Clouds. Kontrolle und Budget liegen woanders.</p>
       </article>
-      <article class="card">
-        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+      <article class="card card--problem">
+        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
         <h3 class="card__title">Datensouveränität unklar</h3>
         <p class="card__text">Wo liegen die Daten wirklich? Wer hat Zugriff? Bei sensiblen Bürger- oder Unternehmensdaten ist das keine Nebensache.</p>
       </article>
@@ -748,7 +827,8 @@ body {
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vertretung bei Urlaub und Ausfall</li>
         </ul>
       </article>
-      <article class="card mode-card">
+      <article class="card mode-card mode-card--featured">
+        <span class="mode-card__badge">Unser Kernprodukt</span>
         <p class="mode-card__tag">Modell 2</p>
         <h3 class="card__title">Betrieb übernehmen — Admin-as-a-Service</h3>
         <p class="card__text">Wir übernehmen den laufenden IT-Betrieb ganz oder in Teilen — als Ihre externe IT-Abteilung. Inklusive Dokumentation, Monitoring und festem Ansprechpartner.</p>
@@ -960,7 +1040,7 @@ body {
       </ul>
       <p class="footer__copy">© 2026 geschke.group · Gildestraße 6 · 49477 Ibbenbüren</p>
     </div>
-    <p class="footer__meta">Version 1.3.1-dev · index2dev · Neugestaltung zur Abstimmung</p>
+    <p class="footer__meta">Version 1.3.2-dev · index2dev · Neugestaltung zur Abstimmung</p>
   </div>
 </footer>
 
