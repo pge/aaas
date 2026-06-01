@@ -3,330 +3,708 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>geschke.group – IT-Verstärkung & Open Source aus Ibbenbüren</title>
-<meta name="description" content="geschke.group aus Ibbenbüren: Verstärkung für Ihre IT oder kompletter Betrieb als externe IT-Abteilung. Auf Open-Source-Basis – digitale Souveränität, Daten in Deutschland, keine Lizenzabhängigkeit.">
+<title>geschke.group – IT-Verstärkung &amp; Open Source aus Ibbenbüren</title>
+<meta name="description" content="geschke.group aus Ibbenbüren: Verstärkung für Ihre IT oder Betrieb als externe IT-Abteilung. Open Source, Daten in Deutschland, DSGVO-konform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --bg:#23293a; --bg2:#2c3448; --bg3:#333d56;
-  --line:rgba(255,255,255,0.08); --line2:rgba(255,255,255,0.15);
-  --t1:#e8edf2; --t2:#8a9bb0; --t3:#7a8fa8;
-  --teal:#3b9eff; --teal-dim:rgba(59,158,255,0.1); --teal-glow:rgba(59,158,255,0.05);
-  --red-dim:rgba(240,100,90,0.13); --red-t:#f0796e;
-  --green-acc:#22c97a; --green-dim:rgba(34,201,122,0.1);
-  --gold:#e0b54a; --gold-dim:rgba(224,181,74,0.12);
+  --color-bg: #FFFFFF;
+  --color-bg-subtle: #F4F6F9;
+  --color-bg-dark: #1B2D4F;
+
+  --color-accent: #1B5FA8;
+  --color-accent-hover: #154D8A;
+
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #4A5568;
+  --color-text-muted: #718096;
+
+  --color-border: #E2E8F0;
+  --color-card-bg: #FFFFFF;
+  --color-card-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --max-width: 1120px;
+  --section-padding: 96px 0;
+  --card-padding: 28px 32px;
+  --card-radius: 8px;
 }
-html { scroll-behavior:smooth; }
-body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--t1); line-height:1.6; font-size:15px; -webkit-font-smoothing:antialiased; }
 
-.wrap { width:100%; padding:0 1.25rem; margin:0 auto; }
+html { scroll-behavior: smooth; }
 
-/* NAV */
-nav { position:sticky; top:0; z-index:100; background:rgba(35,41,58,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:0 1.25rem; }
-.nav-inner { height:52px; display:flex; align-items:center; justify-content:space-between; }
-.nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:var(--t1); text-decoration:none; }
-.nav-logo span { color:var(--teal); }
-.nav-links { display:none; }
-.nav-cta { font-size:13px; font-weight:500; color:#0d1117; background:var(--teal); padding:8px 16px; border-radius:6px; text-decoration:none; white-space:nowrap; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
 
-/* HERO */
-.hero { border-bottom:1px solid var(--line); }
-.hero-inner { display:flex; flex-direction:column; gap:2rem; padding:2.5rem 0; }
-.hero-eyebrow { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1.25rem; display:flex; align-items:center; gap:10px; }
-.hero-eyebrow::before { content:''; display:block; width:20px; height:1px; background:var(--teal); }
-h1 { font-family:'Syne',sans-serif; font-size:32px; font-weight:700; line-height:1.08; letter-spacing:-0.02em; margin-bottom:1.25rem; }
-h1 .accent { color:var(--teal); }
-h1 .dim { color:var(--t2); font-weight:400; }
-.hero-sub { font-size:15px; line-height:1.75; color:var(--t2); margin-bottom:2rem; }
-.hero-actions { display:flex; flex-direction:column; gap:.875rem; }
-.btn-primary { font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:#0d1117; background:var(--teal); padding:13px 24px; border-radius:8px; text-decoration:none; display:block; text-align:center; }
-.btn-ghost { font-size:14px; color:var(--t2); text-decoration:none; display:flex; align-items:center; gap:6px; }
-.hero-quote { background:var(--teal-dim); border:1px solid rgba(59,158,255,0.15); border-radius:12px; padding:1.125rem 1.25rem; }
-.hero-quote p { font-size:14px; line-height:1.65; color:var(--t1); font-style:italic; }
-.hero-quote cite { display:block; margin-top:8px; font-size:12px; color:var(--t2); font-style:normal; }
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-/* PILLS (regionale Hinweise statt erfundener Zahlen) */
-.pills { border-bottom:1px solid var(--line); background:var(--bg2); }
-.pills-inner { display:flex; flex-wrap:wrap; gap:.5rem .75rem; padding:1rem 0; }
-.pill { font-size:12px; color:var(--t2); background:var(--bg3); border:1px solid var(--line); border-radius:20px; padding:5px 12px; }
-.pill b { color:var(--t1); font-weight:600; }
+/* Icons */
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  stroke: var(--color-accent);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-/* SECTIONS */
-section { border-bottom:1px solid var(--line); }
-.sec-pad { padding:3rem 0; }
-.sec-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
-.sec-label::before { content:''; display:block; width:16px; height:1px; background:var(--teal); }
-.sec-label.gold { color:var(--gold); }
-.sec-label.gold::before { background:var(--gold); }
-.sec-label.green { color:var(--green-acc); }
-.sec-label.green::before { background:var(--green-acc); }
-h2 { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; line-height:1.15; letter-spacing:-0.02em; margin-bottom:.875rem; }
-.sec-intro { font-size:15px; line-height:1.75; color:var(--t2); }
+.icon--card { margin-bottom: 16px; }
 
-/* PROBLEM */
-.problem-grid { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
-.problem-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.25rem; position:relative; overflow:hidden; }
-.problem-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red-t); opacity:.45; }
-.problem-scenario { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; margin-bottom:.4rem; line-height:1.3; }
-.problem-desc { font-size:13px; color:var(--t2); line-height:1.65; }
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
 
-/* MODELLE / ENGAGEMENT */
-.modes { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
-.mode-card { background:var(--bg2); border:1px solid var(--line2); border-radius:14px; padding:1.5rem; }
-.mode-tag { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); background:var(--teal-dim); border-radius:20px; padding:3px 11px; display:inline-block; margin-bottom:.9rem; }
-.mode-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:.5rem; }
-.mode-desc { font-size:14px; color:var(--t2); line-height:1.65; margin-bottom:1rem; }
-.mode-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
-.mode-list li { font-size:13px; color:var(--t2); display:flex; gap:8px; align-items:flex-start; }
-.mode-list li::before { content:'→'; color:var(--teal); }
+.nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-/* OPEN SOURCE TABLE */
-.os-intro-box { background:linear-gradient(135deg, rgba(34,201,122,0.08), rgba(59,158,255,0.06)); border:1px solid var(--line2); border-radius:14px; padding:1.25rem 1.5rem; margin-top:1.5rem; }
-.os-intro-box p { font-size:14px; color:var(--t1); line-height:1.7; }
-.compare-wrap { margin-top:1.5rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-.compare-table { width:100%; border-collapse:collapse; min-width:560px; }
-.compare-table th { padding:12px 14px; font-size:12px; font-weight:600; text-align:left; border-bottom:1px solid var(--line2); color:var(--t1); }
-.compare-table th.hl { background:var(--green-dim); color:var(--green-acc); border-bottom-color:rgba(34,201,122,0.3); }
-.compare-table td { padding:12px 14px; font-size:12px; color:var(--t2); border-bottom:1px solid var(--line); vertical-align:middle; }
-.compare-table td.prop { color:var(--t3); }
-.compare-table td.oss { background:rgba(34,201,122,0.05); color:var(--t1); font-weight:500; }
-.compare-table tr:last-child td { border-bottom:none; }
+.nav__logo {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
 
-/* LEISTUNGEN */
-.serv-grid { display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2rem; }
-.serv-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.25rem; }
-.serv-ico { font-size:22px; margin-bottom:.6rem; display:block; }
-.serv-title { font-size:15px; font-weight:600; margin-bottom:.35rem; }
-.serv-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+.nav__links {
+  display: none;
+  list-style: none;
+  gap: 28px;
+}
 
-/* TEAM */
-.team-text { margin-top:1.5rem; display:flex; flex-direction:column; gap:1rem; }
-.team-point { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.25rem; }
-.team-point .tp-title { font-size:14px; font-weight:600; margin-bottom:.25rem; }
-.team-point .tp-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+.nav__links a {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
 
-/* REGIONAL / WARUM */
-.why { background:linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%); }
-.why-grid { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
-.why-card { background:var(--bg3); border:1px solid var(--line); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start; }
-.why-card .ico { font-size:20px; flex-shrink:0; }
-.why-card .wc-title { font-size:14px; font-weight:600; margin-bottom:3px; }
-.why-card .wc-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+.nav__links a:hover { color: var(--color-text-primary); }
 
-/* NOTFALL */
-.emergency { background:var(--red-dim); border:1px solid rgba(240,121,110,0.3); border-radius:14px; padding:1.5rem; margin-top:2rem; }
-.emergency h3 { font-family:'Syne',sans-serif; font-size:17px; margin-bottom:.5rem; color:var(--red-t); }
-.emergency p { font-size:13px; color:var(--t2); line-height:1.65; }
+.nav__cta {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #FFFFFF;
+  background: var(--color-accent);
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.nav__cta:hover { background: var(--color-accent-hover); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+}
+
+.btn--primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+
+.btn--secondary {
+  background: var(--color-bg);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn--secondary:hover {
+  background: var(--color-bg-subtle);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
+}
+
+.btn--primary-light {
+  background: #FFFFFF;
+  color: var(--color-accent);
+  border-color: #FFFFFF;
+}
+
+.btn--primary-light:hover { background: #F4F6F9; }
+
+.btn--secondary-light {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255,255,255,0.6);
+}
+
+.btn--secondary-light:hover { border-color: #FFFFFF; }
+
+/* Section pattern */
+.section { padding: var(--section-padding); }
+
+.section--white { background: var(--color-bg); }
+.section--subtle { background: var(--color-bg-subtle); }
+.section--dark { background: var(--color-bg-dark); }
+
+.section__label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.section__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+}
+
+.section__intro {
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.section__body { margin-top: 48px; }
+
+/* Hero */
+.hero {
+  padding: 80px 0 96px;
+  background: var(--color-bg);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero__label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-4xl);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+}
+
+.hero__subtitle {
+  font-size: var(--text-xl);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+.hero__text {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__svg {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* Cards */
+.card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--color-card-shadow);
+  padding: var(--card-padding);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  border-color: var(--color-accent);
+}
+
+.card__title {
+  font-weight: 600;
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.card__text {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Problem grid */
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Modes */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.mode-card__tag {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.mode-list {
+  list-style: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mode-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.mode-list .icon { width: 18px; height: 18px; margin-top: 1px; }
+
+/* OS Table */
+.os-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.os-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.os-table thead th {
+  background: var(--color-bg-dark);
+  color: #FFFFFF;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 20px;
+}
+
+.os-table tbody td {
+  padding: 14px 20px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.os-table tbody tr:nth-child(odd) td { background: var(--color-bg); }
+.os-table tbody tr:nth-child(even) td { background: #F8FAFC; }
+
+.os-table td.col-oss {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* Services */
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.notfall {
+  margin-top: 24px;
+  background: #EFF6FF;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+}
+
+.notfall .card__title { margin-bottom: 8px; }
+
+/* Team list */
+.team-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 720px;
+}
+
+.team-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.team-list__title {
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.team-list__text {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Regional */
+.why-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
 
 /* CTA */
-.cta-section { padding:4rem 0; text-align:center; position:relative; overflow:hidden; border-bottom:none; }
-.cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59,158,255,0.05) 0%, transparent 70%); pointer-events:none; }
-.cta-section h2 { font-size:26px; margin-bottom:.875rem; }
-.cta-sub { font-size:15px; color:var(--t2); line-height:1.7; margin:0 auto 2rem; }
-.cta-actions { display:flex; flex-direction:column; align-items:center; gap:.875rem; }
-.btn-outline { font-size:14px; color:var(--t1); border:1px solid var(--line2); padding:12px 24px; border-radius:8px; text-decoration:none; display:block; width:100%; max-width:300px; text-align:center; }
-
-/* FOOTER */
-footer { padding:1.75rem 0; border-top:1px solid var(--line); }
-.footer-inner { display:flex; flex-direction:column; gap:.875rem; }
-.footer-copy { font-size:12px; color:var(--t3); }
-.footer-badges { display:flex; gap:8px; flex-wrap:wrap; }
-.footer-badge { font-size:11px; color:var(--t3); border:1px solid var(--line); border-radius:20px; padding:3px 10px; }
-.footer-version { margin-top:1rem; text-align:center; font-size:11px; color:var(--t3); letter-spacing:.04em; }
-
-/* TABLET */
-@media (min-width: 640px) {
-  .wrap { padding:0 2rem; }
-  .hero-actions { flex-direction:row; }
-  .btn-primary { display:inline-block; width:auto; text-align:left; }
-  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-  .modes { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-  .serv-grid { grid-template-columns:repeat(3,1fr); gap:1.25rem; }
-  .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-  .cta-actions { flex-direction:row; justify-content:center; flex-wrap:wrap; }
-  .btn-outline { width:auto; }
-  .footer-inner { flex-direction:row; align-items:center; justify-content:space-between; }
+.cta {
+  padding: 80px 0;
+  text-align: center;
 }
 
-/* DESKTOP */
+.cta .section__title { color: #FFFFFF; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.cta .section__intro {
+  color: #94A3B8;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta__actions {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Footer */
+.footer {
+  background: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-border);
+  padding: 24px 0;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.footer__logo {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+}
+
+.footer__links a {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer__links a:hover { color: var(--color-text-secondary); }
+
+.footer__copy {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.footer__meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .hero__title { font-size: var(--text-5xl); }
+  .hero__actions { flex-direction: row; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .cta__actions { flex-direction: row; justify-content: center; }
+  .footer__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Desktop */
 @media (min-width: 900px) {
-  .wrap { max-width:1020px; padding:0 2.5rem; }
-  nav { padding:0 2.5rem; }
-  .nav-inner { height:60px; }
-  .nav-links { display:flex; gap:1.75rem; list-style:none; }
-  .nav-links a { font-size:13px; color:var(--t2); text-decoration:none; transition:color .2s; }
-  .nav-links a:hover { color:var(--t1); }
-  .hero-inner { flex-direction:row; align-items:center; gap:4rem; padding:5rem 0; }
-  .hero-inner > div:first-child { flex:1; }
-  .hero-right { flex:1; display:flex; flex-direction:column; gap:16px; }
-  h1 { font-size:clamp(34px,4.2vw,52px); }
-  .hero-sub { font-size:16px; }
-  .sec-pad { padding:5.5rem 0; }
-  h2 { font-size:clamp(26px,3vw,36px); }
-  .sec-intro { font-size:16px; max-width:760px; }
-  .cta-section { padding:7rem 0; }
-  .cta-section h2 { font-size:clamp(28px,3vw,42px); }
+  .nav__links { display: flex; }
+  .hero__grid { grid-template-columns: 55fr 45fr; gap: 64px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .footer__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+  .footer__links { justify-content: center; }
+  .footer__copy { text-align: right; white-space: nowrap; }
+}
+
+@media (max-width: 899px) {
+  :root { --section-padding: 64px 0; }
+  .hero { padding: 48px 0 64px; }
+  .hero__visual { display: none; }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">geschke<span>.</span>group</a>
-    <ul class="nav-links">
+<!-- Navigation -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">geschke.group</a>
+    <ul class="nav__links">
       <li><a href="#situation">Die Lage</a></li>
       <li><a href="#modelle">Zusammenarbeit</a></li>
       <li><a href="#opensource">Open Source</a></li>
       <li><a href="#leistungen">Leistungen</a></li>
       <li><a href="#regional">Regional</a></li>
     </ul>
-    <a href="https://geschke.group/kontakt.html" class="nav-cta">Gespräch anfragen</a>
+    <a href="https://geschke.group/kontakt.html" class="nav__cta">Gespräch anfragen</a>
   </div>
-</nav>
+</header>
 
-<div class="wrap">
-  <div class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-eyebrow">geschke.group · Ibbenbüren</div>
-        <h1>Verstärkung für Ihre IT.<br><span class="dim">Aus der Region.</span> <span class="accent">Auf Open Source.</span></h1>
-        <p class="hero-sub">Ihre IT-Abteilung ist am Limit? Wir entlasten Ihr Team bei Spitzen und Spezialthemen — oder übernehmen den Betrieb ganz als Ihre externe IT-Abteilung. Persönlich, regional verankert und konsequent auf offene, datensouveräne Technologie gesetzt.</p>
-        <div class="hero-actions">
-          <a href="https://geschke.group/kontakt.html" class="btn-primary">Unverbindliches Gespräch</a>
-          <a href="#modelle" class="btn-ghost">Wie wir zusammenarbeiten →</a>
-        </div>
-      </div>
-      <div class="hero-right" style="display:flex;flex-direction:column;gap:16px;">
-        <div style="background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:1.5rem;">
-          <canvas id="bubble-canvas" width="520" height="380" style="width:100%;height:auto;display:block;border-radius:10px;"></canvas>
-        </div>
-        <div class="hero-quote">
-          <p>„Wir ersetzen Ihre IT nicht — wir verstärken sie. Und wir bauen sie so, dass Sie unabhängig bleiben: offen, dokumentiert, in Ihrer Hand."</p>
-          <cite>— Patrick Geschke, geschke.group</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- REGIONALE EINORDNUNG (ehrlich, ohne erfundene Zahlen) -->
-<div class="pills">
+<!-- Hero -->
+<section class="hero">
   <div class="wrap">
-    <div class="pills-inner">
-      <span class="pill"><b>Standort</b> Ibbenbüren</span>
-      <span class="pill"><b>Daten</b> in Deutschland</span>
-      <span class="pill"><b>DSGVO-konform</b></span>
-      <span class="pill"><b>Open Source</b> statt Lizenz-Lock-in</span>
-      <span class="pill"><b>Notfall-Support</b> per Fernwartung &amp; vor Ort</span>
-    </div>
-  </div>
-</div>
-
-<!-- SITUATION / PROBLEM -->
-<section id="situation">
-  <div class="wrap sec-pad">
-    <div class="sec-label">Die Lage</div>
-    <h2>Gute IT-Leute sind knapp.<br>Die Aufgaben werden mehr.</h2>
-    <p class="sec-intro">Viele IT-Abteilungen — gerade in Verwaltung, Stadtwerken und regionalem Mittelstand — arbeiten am Anschlag: Fachkräftemangel, wachsende Anforderungen, teure Lizenzmodelle und eine Abhängigkeit von US-Cloud-Anbietern, die niemand so richtig wollte.</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-scenario">Personalengpass</div>
-        <p class="problem-desc">Offene Stellen bleiben monatelang unbesetzt, das bestehende Team fängt alles auf. Projekte bleiben liegen, weil der Alltag schon voll ist.</p>
+    <div class="hero__grid">
+      <div>
+        <p class="hero__label">IT-Partner für die Region</p>
+        <h1 class="hero__title">Verstärkung für Ihre IT.</h1>
+        <p class="hero__subtitle">Aus der Region. Auf Open Source.</p>
+        <p class="hero__text">Ihre IT-Abteilung ist am Limit? Wir entlasten Ihr Team bei Spitzen und Spezialthemen — oder übernehmen den Betrieb als Ihre externe IT-Abteilung. Persönlich, regional verankert und auf offene, datensouveräne Technologie gesetzt.</p>
+        <div class="hero__actions">
+          <a href="https://geschke.group/kontakt.html" class="btn btn--primary">Unverbindliches Gespräch</a>
+          <a href="#modelle" class="btn btn--secondary">Wie wir zusammenarbeiten</a>
+        </div>
       </div>
-      <div class="problem-card">
-        <div class="problem-scenario">Wissen auf wenigen Schultern</div>
-        <p class="problem-desc">Fällt eine Schlüsselperson aus, wird es eng. Vieles ist nur in Köpfen, nicht dokumentiert — und damit nicht vertretbar.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-scenario">Teure Lizenz-Abhängigkeit</div>
-        <p class="problem-desc">Jahr für Jahr steigende Lizenzkosten, Funktionen hinter Paywalls, Daten in fremden Clouds. Kontrolle und Budget liegen woanders.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-scenario">Datensouveränität unklar</div>
-        <p class="problem-desc">Wo liegen die Daten wirklich? Wer hat Zugriff? Bei sensiblen Bürger- oder Unternehmensdaten ist das keine Nebensache.</p>
+      <div class="hero__visual" aria-hidden="true">
+        <svg class="hero__svg" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="200" width="120" height="80" rx="8" fill="#1B5FA8" fill-opacity="0.1" stroke="#1B5FA8" stroke-width="1.5"/>
+          <rect x="60" y="220" width="24" height="16" rx="2" fill="#1B5FA8" fill-opacity="0.15"/>
+          <rect x="92" y="220" width="24" height="16" rx="2" fill="#1B5FA8" fill-opacity="0.15"/>
+          <rect x="124" y="220" width="24" height="16" rx="2" fill="#1B5FA8" fill-opacity="0.15"/>
+          <rect x="240" y="60" width="120" height="100" rx="8" fill="#1B5FA8" fill-opacity="0.1" stroke="#1B5FA8" stroke-width="1.5"/>
+          <circle cx="280" cy="95" r="12" stroke="#1B5FA8" stroke-width="1.5"/>
+          <circle cx="320" cy="95" r="12" stroke="#1B5FA8" stroke-width="1.5"/>
+          <circle cx="280" cy="130" r="12" stroke="#1B5FA8" stroke-width="1.5"/>
+          <circle cx="320" cy="130" r="12" stroke="#1B5FA8" stroke-width="1.5"/>
+          <path d="M160 240 L220 110" stroke="#1B5FA8" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path d="M160 240 L240 160" stroke="#1B5FA8" stroke-width="1.5" stroke-dasharray="6 4"/>
+        </svg>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MODELLE: BEIDE WEGE -->
-<section id="modelle">
-  <div class="wrap sec-pad">
-    <div class="sec-label">Zusammenarbeit</div>
-    <h2>Zwei Wege — je nachdem, was Sie brauchen</h2>
-    <p class="sec-intro">Sie entscheiden, wie weit wir gehen. Beide Modelle lassen sich kombinieren und jederzeit anpassen.</p>
-    <div class="modes">
-      <div class="mode-card">
-        <span class="mode-tag">Modell 1</span>
-        <div class="mode-title">Verstärkung Ihres Teams</div>
-        <p class="mode-desc">Wir arbeiten Ihrer bestehenden IT zu — als verlängerte Werkbank für Spitzenlast, Projekte und Spezialthemen. Ihr Team behält die Hoheit, wir bringen Kapazität und Know-how dazu.</p>
-        <ul class="mode-list">
-          <li>Projekt- &amp; Spitzenlast abfedern</li>
-          <li>Spezial-Know-how (Linux, Netzwerk, Open Source)</li>
-          <li>Migrationen &amp; Infrastruktur-Aufbau</li>
-          <li>Vertretung bei Urlaub &amp; Ausfall</li>
-        </ul>
-      </div>
-      <div class="mode-card">
-        <span class="mode-tag">Modell 2</span>
-        <div class="mode-title">Betrieb übernehmen — Admin-as-a-Service</div>
-        <p class="mode-desc">Wir übernehmen den laufenden IT-Betrieb ganz oder in Teilen — als Ihre externe IT-Abteilung. Inklusive Dokumentation, Monitoring und einem festen Ansprechpartner.</p>
-        <ul class="mode-list">
-          <li>Laufender Betrieb &amp; Wartung</li>
-          <li>Monitoring &amp; strukturierte Dokumentation</li>
-          <li>Fester Ansprechpartner statt Hotline-Schleife</li>
-          <li>Skaliert mit — ohne neue Stellen</li>
-        </ul>
-      </div>
+<!-- Die Lage -->
+<section id="situation" class="section section--subtle">
+  <div class="wrap">
+    <p class="section__label">Die Lage</p>
+    <h2 class="section__title">Gute IT-Leute sind knapp.<br>Die Aufgaben werden mehr.</h2>
+    <p class="section__intro">Viele IT-Abteilungen — gerade in Verwaltung, Stadtwerken und regionalem Mittelstand — arbeiten am Anschlag: Fachkräftemangel, wachsende Anforderungen und teure Lizenzmodelle.</p>
+    <div class="section__body grid-4">
+      <article class="card">
+        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3 class="card__title">Personalengpass</h3>
+        <p class="card__text">Offene Stellen bleiben monatelang unbesetzt, das bestehende Team fängt alles auf. Projekte bleiben liegen, weil der Alltag schon voll ist.</p>
+      </article>
+      <article class="card">
+        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        <h3 class="card__title">Wissen auf wenigen Schultern</h3>
+        <p class="card__text">Fällt eine Schlüsselperson aus, wird es eng. Vieles ist nur in Köpfen, nicht dokumentiert — und damit nicht vertretbar.</p>
+      </article>
+      <article class="card">
+        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3 class="card__title">Teure Lizenz-Abhängigkeit</h3>
+        <p class="card__text">Jahr für Jahr steigende Lizenzkosten, Funktionen hinter Paywalls, Daten in fremden Clouds. Kontrolle und Budget liegen woanders.</p>
+      </article>
+      <article class="card">
+        <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        <h3 class="card__title">Datensouveränität unklar</h3>
+        <p class="card__text">Wo liegen die Daten wirklich? Wer hat Zugriff? Bei sensiblen Bürger- oder Unternehmensdaten ist das keine Nebensache.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- OPEN SOURCE -->
-<section id="opensource">
-  <div class="wrap sec-pad">
-    <div class="sec-label green">Open Source</div>
-    <h2>Unabhängig statt eingesperrt</h2>
-    <p class="sec-intro">Wir sind überzeugte Open-Source-Vorantreiber. Für jede gängige proprietäre Lösung gibt es eine ausgereifte, offene Alternative — die wir produktiv betreiben. Das Ergebnis: volle Datenkontrolle, planbare Kosten und keine Abhängigkeit von einem einzelnen Hersteller.</p>
-    <div class="os-intro-box">
-      <p>Open Source heißt nicht „Bastellösung". Es heißt: nachvollziehbare Sicherheit, Daten in Deutschland und die Freiheit, Ihre IT so zu betreiben, wie es zu Ihnen passt — nicht wie es ein Lizenzvertrag vorschreibt.</p>
+<!-- Zusammenarbeit -->
+<section id="modelle" class="section section--white">
+  <div class="wrap">
+    <p class="section__label">Zusammenarbeit</p>
+    <h2 class="section__title">Zwei Wege — je nachdem, was Sie brauchen</h2>
+    <p class="section__intro">Sie entscheiden, wie weit wir gehen. Beide Modelle lassen sich kombinieren und jederzeit anpassen.</p>
+    <div class="section__body grid-2">
+      <article class="card mode-card">
+        <p class="mode-card__tag">Modell 1</p>
+        <h3 class="card__title">Verstärkung Ihres Teams</h3>
+        <p class="card__text">Wir arbeiten Ihrer bestehenden IT zu — als verlängerte Werkbank für Spitzenlast, Projekte und Spezialthemen. Ihr Team behält die Hoheit, wir bringen Kapazität und Know-how dazu.</p>
+        <ul class="mode-list">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Projekt- und Spitzenlast abfedern</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Spezial-Know-how (Linux, Netzwerk, Open Source)</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Migrationen und Infrastruktur-Aufbau</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vertretung bei Urlaub und Ausfall</li>
+        </ul>
+      </article>
+      <article class="card mode-card">
+        <p class="mode-card__tag">Modell 2</p>
+        <h3 class="card__title">Betrieb übernehmen — Admin-as-a-Service</h3>
+        <p class="card__text">Wir übernehmen den laufenden IT-Betrieb ganz oder in Teilen — als Ihre externe IT-Abteilung. Inklusive Dokumentation, Monitoring und festem Ansprechpartner.</p>
+        <ul class="mode-list">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Laufender Betrieb und Wartung</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Monitoring und strukturierte Dokumentation</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fester Ansprechpartner statt Hotline-Schleife</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Skaliert mit — ohne neue Stellen</li>
+        </ul>
+      </article>
     </div>
-    <div class="compare-wrap">
-      <table class="compare-table">
+  </div>
+</section>
+
+<!-- Open Source -->
+<section id="opensource" class="section section--subtle">
+  <div class="wrap">
+    <p class="section__label">Open Source</p>
+    <h2 class="section__title">Unabhängig statt eingesperrt</h2>
+    <p class="section__intro">Für gängige proprietäre Lösungen setzen wir ausgereifte Open-Source-Alternativen ein — produktiv betrieben, mit voller Datenkontrolle und planbaren Kosten.</p>
+    <div class="section__body os-table-wrap">
+      <table class="os-table">
         <thead>
           <tr>
-            <th style="width:30%">Proprietär</th>
-            <th class="hl" style="width:30%">Open-Source-Alternative</th>
-            <th style="width:40%">Ihr Vorteil</th>
+            <th>Proprietär</th>
+            <th>Open-Source-Alternative</th>
+            <th>Ihr Vorteil</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="prop">Microsoft 365 / OneDrive</td>
-            <td class="oss">Nextcloud + OnlyOffice</td>
+            <td>Microsoft 365 / OneDrive</td>
+            <td class="col-oss">Nextcloud + OnlyOffice</td>
             <td>Volle Datenkontrolle, keine US-Cloud — alles bleibt bei Ihnen</td>
           </tr>
           <tr>
-            <td class="prop">VMware vSphere / Hyper-V</td>
-            <td class="oss">Proxmox VE</td>
+            <td>VMware vSphere / Hyper-V</td>
+            <td class="col-oss">Proxmox VE</td>
             <td>Keine Lizenzabhängigkeit, flexible Cluster, planbare Kosten</td>
           </tr>
           <tr>
-            <td class="prop">Cisco / Fortinet / Sophos</td>
-            <td class="oss">OPNsense</td>
+            <td>Cisco / Fortinet / Sophos</td>
+            <td class="col-oss">OPNsense</td>
             <td>Transparente Sicherheit, regelmäßige Updates, kein Hersteller-Lock-in</td>
           </tr>
           <tr>
-            <td class="prop">Microsoft Exchange Online</td>
-            <td class="oss">Mailcow</td>
-            <td>Volle Kontrolle über Postfächer, DSGVO-konform, Daten in DE</td>
+            <td>Microsoft Exchange Online</td>
+            <td class="col-oss">Mailcow</td>
+            <td>Volle Kontrolle über Postfächer, DSGVO-konform, Daten in Deutschland</td>
           </tr>
           <tr>
-            <td class="prop">LastPass / 1Password</td>
-            <td class="oss">Vaultwarden</td>
+            <td>LastPass / 1Password</td>
+            <td class="col-oss">Vaultwarden</td>
             <td>Zero-Knowledge — Ihre Passwörter bleiben unter Ihrer Kontrolle</td>
           </tr>
         </tbody>
@@ -335,379 +713,151 @@ footer { padding:1.75rem 0; border-top:1px solid var(--line); }
   </div>
 </section>
 
-<!-- LEISTUNGEN -->
-<section id="leistungen">
-  <div class="wrap sec-pad">
-    <div class="sec-label">Leistungen</div>
-    <h2>Was wir konkret machen</h2>
-    <p class="sec-intro">Vom einzelnen Server bis zur hybriden Netzwerkarchitektur — geplant, aufgebaut und betrieben.</p>
-    <div class="serv-grid">
-      <div class="serv-card">
-        <span class="serv-ico">🖥️</span>
-        <div class="serv-title">IT-Infrastruktur</div>
-        <div class="serv-desc">Planung, Aufbau und Betrieb moderner IT-Systeme — sicher, wartbar und auf Wachstum ausgelegt.</div>
+<!-- Leistungen -->
+<section id="leistungen" class="section section--white">
+  <div class="wrap">
+    <p class="section__label">Leistungen</p>
+    <h2 class="section__title">Was wir konkret machen</h2>
+    <p class="section__intro">Vom einzelnen Server bis zur hybriden Netzwerkarchitektur — geplant, aufgebaut und betrieben.</p>
+    <div class="section__body">
+      <div class="grid-3">
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+          <h3 class="card__title">IT-Infrastruktur</h3>
+          <p class="card__text">Planung, Aufbau und Betrieb moderner IT-Systeme — sicher, wartbar und auf Wachstum ausgelegt.</p>
+        </article>
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3 class="card__title">Admin-as-a-Service</h3>
+          <p class="card__text">Ihre externe IT-Abteilung — persönlich, flexibel, mit technischem Know-how für KMU und komplexe Umgebungen.</p>
+        </article>
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <h3 class="card__title">E-Mail mit Mailcow</h3>
+          <p class="card__text">Professionelles, DSGVO-konformes E-Mail-Hosting auf Open-Source-Basis — volle Kontrolle über Ihre Daten.</p>
+        </article>
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <h3 class="card__title">Webhosting</h3>
+          <p class="card__text">Performant, zuverlässig, datenschutzkonform. Serverstandort Deutschland, klare Tarife.</p>
+        </article>
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <h3 class="card__title">Cloud-Telefonie</h3>
+          <p class="card__text">Flexible Telefonanlagen, die mitwachsen — skalierbar, zuverlässig, ohne Herstellerabhängigkeit.</p>
+        </article>
+        <article class="card">
+          <svg class="icon icon--card" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+          <h3 class="card__title">Sicherheit &amp; Firewall</h3>
+          <p class="card__text">Netzwerkschutz mit OPNsense und durchdachten Zugriffskonzepten — transparent und anpassbar.</p>
+        </article>
       </div>
-      <div class="serv-card">
-        <span class="serv-ico">🧑‍💻</span>
-        <div class="serv-title">Admin-as-a-Service</div>
-        <div class="serv-desc">Ihre externe IT-Abteilung — persönlich, flexibel, mit technischem Know-how für KMU und komplexe Umgebungen.</div>
-      </div>
-      <div class="serv-card">
-        <span class="serv-ico">📧</span>
-        <div class="serv-title">E-Mail mit Mailcow</div>
-        <div class="serv-desc">Professionelles, DSGVO-konformes E-Mail-Hosting auf Open-Source-Basis — volle Kontrolle über Ihre Daten.</div>
-      </div>
-      <div class="serv-card">
-        <span class="serv-ico">🌐</span>
-        <div class="serv-title">Webhosting</div>
-        <div class="serv-desc">Performant, zuverlässig, datenschutzkonform. Serverstandort Deutschland, klare Tarife.</div>
-      </div>
-      <div class="serv-card">
-        <span class="serv-ico">☎️</span>
-        <div class="serv-title">Cloud-Telefonie</div>
-        <div class="serv-desc">Flexible Telefonanlagen, die mitwachsen — skalierbar, zuverlässig, ohne Herstellerabhängigkeit.</div>
-      </div>
-      <div class="serv-card">
-        <span class="serv-ico">🛡️</span>
-        <div class="serv-title">Sicherheit &amp; Firewall</div>
-        <div class="serv-desc">Netzwerkschutz mit OPNsense und durchdachten Zugriffskonzepten — transparent und anpassbar.</div>
-      </div>
-    </div>
-
-    <div class="emergency">
-      <h3>🚨 IT-Notfall-Support</h3>
-      <p>Wenn Server ausfallen oder ein Angriff die IT lahmlegt, zählt jede Minute. Wir helfen schnell und strukturiert — per Fernwartung, telefonisch und bei Bedarf vor Ort. Kurze Wege aus der Region zahlen sich hier besonders aus.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="wrap sec-pad">
-    <div class="sec-label">Das Team</div>
-    <h2>Ein interdisziplinäres Team — kein Einzelkämpfer</h2>
-    <p class="sec-intro">Hinter geschke.group steht ein Team aus Admins, Entwicklern und Strategen. Wir denken mit, handeln voraus und bleiben ruhig, wenn es ernst wird.</p>
-    <div class="team-text">
-      <div class="team-point">
-        <div class="tp-title">Mehrere Köpfe statt Abhängigkeit von einer Person</div>
-        <div class="tp-desc">Aufgaben und Wissen verteilen sich auf mehrere Schultern — Urlaub oder Ausfall legen Ihre IT nicht lahm.</div>
-      </div>
-      <div class="team-point">
-        <div class="tp-title">Dokumentation, die lebt</div>
-        <div class="tp-desc">Wir dokumentieren Ihre Umgebung nachvollziehbar und halten sie aktuell — damit Wissen vertretbar bleibt, nicht eingefroren in einer Schublade.</div>
-      </div>
-      <div class="team-point">
-        <div class="tp-title">Technik, die funktioniert</div>
-        <div class="tp-desc">Zuverlässigkeit, Performance und Sicherheit sind kein Marketing, sondern unser Arbeitsalltag — vom kleinen Setup bis zur hybriden Architektur.</div>
-      </div>
+      <article class="notfall">
+        <h3 class="card__title">IT-Notfall-Support</h3>
+        <p class="card__text">Wenn Server ausfallen oder ein Angriff die IT lahmlegt, zählt jede Minute. Wir helfen schnell und strukturiert — per Fernwartung, telefonisch und bei Bedarf vor Ort. Kurze Wege aus der Region zahlen sich hier besonders aus.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- REGIONAL / WARUM WIR -->
-<section id="regional" class="why">
-  <div class="wrap sec-pad">
-    <div class="sec-label gold">Regional &amp; unabhängig</div>
-    <h2>Warum ein Partner aus Ibbenbüren?</h2>
-    <p class="sec-intro">Gerade für die öffentliche Hand und regionale Unternehmen zählt mehr als nur Technik: kurze Wege, Erreichbarkeit und ein Partner, der für digitale Souveränität statt Konzern-Abhängigkeit steht.</p>
-    <div class="why-grid">
-      <div class="why-card">
-        <span class="ico">📍</span>
+<!-- Team -->
+<section id="team" class="section section--subtle">
+  <div class="wrap">
+    <p class="section__label">Das Team</p>
+    <h2 class="section__title">Ein interdisziplinäres Team — kein Einzelkämpfer</h2>
+    <p class="section__intro">Hinter geschke.group steht ein Team aus Admins, Entwicklern und Strategen. Wir denken mit, handeln voraus und bleiben ruhig, wenn es ernst wird.</p>
+    <ul class="section__body team-list">
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <div>
-          <div class="wc-title">Vor Ort statt Hotline</div>
-          <div class="wc-desc">Aus Ibbenbüren für die Region — schnelle Termine, Fernwartung und bei Bedarf persönlich vor Ort.</div>
+          <h3 class="team-list__title">Mehrere Köpfe statt Abhängigkeit von einer Person</h3>
+          <p class="team-list__text">Aufgaben und Wissen verteilen sich auf mehrere Schultern — Urlaub oder Ausfall legen Ihre IT nicht lahm.</p>
         </div>
-      </div>
-      <div class="why-card">
-        <span class="ico">🇩🇪</span>
+      </li>
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
         <div>
-          <div class="wc-title">Daten in Deutschland</div>
-          <div class="wc-desc">Serverstandort Deutschland und DSGVO-konforme Lösungen — keine ungewollte US-Cloud.</div>
+          <h3 class="team-list__title">Dokumentation, die lebt</h3>
+          <p class="team-list__text">Wir dokumentieren Ihre Umgebung nachvollziehbar und halten sie aktuell — damit Wissen vertretbar bleibt, nicht eingefroren in einer Schublade.</p>
         </div>
-      </div>
-      <div class="why-card">
-        <span class="ico">🔓</span>
+      </li>
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
         <div>
-          <div class="wc-title">Open Source &amp; Unabhängigkeit</div>
-          <div class="wc-desc">Wir treiben offene Technologien voran — Sie bleiben unabhängig von Lizenzmodellen und einzelnen Herstellern.</div>
+          <h3 class="team-list__title">Technik, die funktioniert</h3>
+          <p class="team-list__text">Zuverlässigkeit, Performance und Sicherheit sind unser Arbeitsalltag — vom kleinen Setup bis zur hybriden Architektur.</p>
         </div>
-      </div>
-      <div class="why-card">
-        <span class="ico">🤝</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Regional -->
+<section id="regional" class="section section--white">
+  <div class="wrap">
+    <p class="section__label">Regional</p>
+    <h2 class="section__title">Warum ein Partner aus Ibbenbüren?</h2>
+    <p class="section__intro">Für Verwaltung und regionale Unternehmen zählt mehr als Technik: kurze Wege, Erreichbarkeit und ein Partner für digitale Souveränität statt Konzern-Abhängigkeit.</p>
+    <div class="section__body grid-2">
+      <article class="card why-card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         <div>
-          <div class="wc-title">Entlasten, nicht verdrängen</div>
-          <div class="wc-desc">Wir arbeiten mit Ihrer IT zusammen, geben Wissen weiter und stärken Ihr Team — statt es zu ersetzen.</div>
+          <h3 class="card__title">Vor Ort statt Hotline</h3>
+          <p class="card__text">Aus Ibbenbüren für die Region — schnelle Termine, Fernwartung und bei Bedarf persönlich vor Ort.</p>
         </div>
-      </div>
+      </article>
+      <article class="card why-card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+        <div>
+          <h3 class="card__title">Daten in Deutschland</h3>
+          <p class="card__text">Serverstandort Deutschland und DSGVO-konforme Lösungen — keine ungewollte US-Cloud.</p>
+        </div>
+      </article>
+      <article class="card why-card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div>
+          <h3 class="card__title">Open Source &amp; Unabhängigkeit</h3>
+          <p class="card__text">Wir setzen auf offene Technologien — Sie bleiben unabhängig von Lizenzmodellen und einzelnen Herstellern.</p>
+        </div>
+      </article>
+      <article class="card why-card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2-2a1 1 0 1 0-3-3l-2 2"/><path d="m9 9 2-2a1 1 0 1 0-3-3l-2 2"/><path d="m6 12 2 2a1 1 0 1 0 3-3"/></svg>
+        <div>
+          <h3 class="card__title">Entlasten, nicht verdrängen</h3>
+          <p class="card__text">Wir arbeiten mit Ihrer IT zusammen, geben Wissen weiter und stärken Ihr Team — statt es zu ersetzen.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="cta-section">
-    <div class="sec-label" style="justify-content:center">Jetzt sprechen</div>
-    <h2>Kein Pitch. Kein Verkaufsdruck.<br>Ein ehrliches Gespräch.</h2>
-    <p class="cta-sub">Wir schauen uns gemeinsam an, wo Ihre IT heute steht und wo wir entlasten können — unverbindlich, direkt, lösungsorientiert.</p>
-    <div class="cta-actions">
-      <a href="https://geschke.group/kontakt.html" class="btn-primary">Beratung anfragen</a>
-      <a href="tel:+4954515623400" class="btn-outline">+49 5451 562 34 0</a>
-      <a href="mailto:office@geschke.group" class="btn-outline">office@geschke.group</a>
+<!-- CTA -->
+<section class="section section--dark cta">
+  <div class="wrap">
+    <h2 class="section__title">Kein Pitch. Kein Verkaufsdruck.<br>Ein ehrliches Gespräch.</h2>
+    <p class="section__intro">Wir schauen uns gemeinsam an, wo Ihre IT heute steht und wo wir entlasten können — unverbindlich, direkt, lösungsorientiert.</p>
+    <div class="cta__actions">
+      <a href="https://geschke.group/kontakt.html" class="btn btn--primary-light">Beratung anfragen</a>
+      <a href="tel:+4954515623400" class="btn btn--secondary-light">+49 5451 562 34 0</a>
     </div>
   </div>
-</div>
+</section>
 
-<div class="wrap">
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-copy">© 2026 geschke.group · Gildestraße 6 · 49477 Ibbenbüren</span>
-      <div class="footer-badges">
-        <span class="footer-badge">DSGVO-konform</span>
-        <span class="footer-badge">Daten in Deutschland</span>
-        <span class="footer-badge">Linux &amp; Open Source</span>
-      </div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <a href="#" class="footer__logo">geschke.group</a>
+      <ul class="footer__links">
+        <li><a href="https://geschke.group">Impressum</a></li>
+        <li><a href="https://geschke.group">Datenschutz</a></li>
+        <li><a href="https://geschke.group/kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 geschke.group · Gildestraße 6 · 49477 Ibbenbüren</p>
     </div>
-    <div class="footer-version">
-      Version 1.2.0-dev · index2dev · Hybrid-Entwurf zur Abstimmung
-    </div>
-  </footer>
-</div>
+    <p class="footer__meta">Version 1.3.0-dev · index2dev · Neugestaltung zur Abstimmung</p>
+  </div>
+</footer>
 
-<script>
-(function(){
-  var canvas = document.getElementById('bubble-canvas');
-  if(!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W=560, H=460;
-  canvas.width=W; canvas.height=H;
-
-  var BLUE='#3b9eff', GREEN='#22c97a', BG='#1a2030';
-  var LABEL_H=60;
-  var UH=H-LABEL_H;
-
-  var FW=160, FH=44;
-  var FX=120;
-
-  var firms=[
-    {label:'Verwaltung',  x:FX, y:LABEL_H+UH*0.2, w:FW, h:FH, state:'idle'},
-    {label:'Stadtwerke',  x:FX, y:LABEL_H+UH*0.5, w:FW, h:FH, state:'idle'},
-    {label:'Mittelstand', x:FX, y:LABEL_H+UH*0.8, w:FW, h:FH, state:'idle'},
-  ];
-
-  var AR=26;
-  var AX=460;
-
-  var admins=[
-    {label:'Admin A', hx:AX, hy:LABEL_H+UH*0.18, x:AX, y:LABEL_H+UH*0.18, state:'idle'},
-    {label:'Admin B', hx:AX, hy:LABEL_H+UH*0.40, x:AX, y:LABEL_H+UH*0.40, state:'idle'},
-    {label:'Dev C',   hx:AX, hy:LABEL_H+UH*0.62, x:AX, y:LABEL_H+UH*0.62, state:'idle'},
-    {label:'Admin D', hx:AX, hy:LABEL_H+UH*0.84, x:AX, y:LABEL_H+UH*0.84, state:'idle'},
-  ];
-
-  var connections=[
-    [0,0],[0,1],[0,3],
-    [1,1],[1,2],[1,3],
-    [2,0],[2,2],[2,3],
-  ];
-
-  var activeFirm=null, activeAdmin=null, activeConn=null;
-  var phase='idle', phaseTimer=80, frame=0;
-
-  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
-
-  function startSequence(){
-    var fi=Math.floor(Math.random()*firms.length);
-    var conns=connections.filter(function(c){return c[0]===fi;});
-    var chosen=pick(conns);
-    activeFirm=fi;
-    activeConn=chosen;
-    activeAdmin=admins[chosen[1]];
-    firms[fi].state='requesting';
-    phase='firm_pulse';
-    phaseTimer=60;
-  }
-
-  function firmRight(f){ return f.x+f.w/2; }
-
-  function rr(x,y,w,h,r){
-    ctx.beginPath();
-    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
-    ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-    ctx.lineTo(x+w,y+h-r);
-    ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-    ctx.lineTo(x+r,y+h);
-    ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-    ctx.lineTo(x,y+r);
-    ctx.quadraticCurveTo(x,y,x+r,y);
-    ctx.closePath();
-  }
-
-  function drawBG(){
-    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='rgba(59,158,255,0.07)'; ctx.fillRect(0,0,W*0.47,LABEL_H);
-    ctx.fillStyle=BLUE; ctx.font='700 13px Inter,sans-serif';
-    ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText('IHRE ORGANISATION', FX, LABEL_H/2 - 1);
-    ctx.fillStyle='rgba(34,201,122,0.07)'; ctx.fillRect(W*0.47,0,W*0.53,LABEL_H);
-    ctx.fillStyle=GREEN; ctx.font='700 13px Inter,sans-serif';
-    ctx.fillText('GESCHKE.GROUP TEAM', W*0.47+(W*0.53)/2, LABEL_H/2 - 1);
-    ctx.save(); ctx.setLineDash([4,6]);
-    ctx.strokeStyle='rgba(255,255,255,0.08)'; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(W*0.47,LABEL_H); ctx.lineTo(W*0.47,H); ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(0,LABEL_H); ctx.lineTo(W,LABEL_H); ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawConnections(){
-    connections.forEach(function(conn){
-      var f=firms[conn[0]], a=admins[conn[1]];
-      var isActive=activeConn&&conn[0]===activeConn[0]&&conn[1]===activeConn[1];
-      var isBackup=activeFirm!==null&&conn[0]===activeFirm&&!isActive;
-      var isFirmActive=activeFirm!==null&&conn[0]===activeFirm;
-
-      if(isActive&&phase==='moving') return;
-      if(isActive&&(phase==='arrived'||phase==='returning')) return;
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(firmRight(f), f.y);
-      ctx.lineTo(a.hx-AR, a.hy);
-
-      if(isFirmActive&&(phase==='show_lines')){
-        ctx.strokeStyle=BLUE; ctx.lineWidth=1.5; ctx.globalAlpha=0.55; ctx.setLineDash([4,5]);
-      } else if(isBackup&&(phase==='moving'||phase==='arrived')){
-        ctx.strokeStyle=BLUE; ctx.lineWidth=1.5; ctx.globalAlpha=0.3; ctx.setLineDash([4,5]);
-      } else {
-        ctx.strokeStyle='rgba(255,255,255,0.07)'; ctx.lineWidth=1; ctx.globalAlpha=1; ctx.setLineDash([3,7]);
-      }
-      ctx.stroke();
-      ctx.restore();
-    });
-  }
-
-  function drawFirm(f){
-    var isReq = f.state === 'requesting';
-    var pulse  = 0.5 + 0.5*Math.sin(frame*0.14);
-    var borderColor = isReq ? BLUE : '#3b4a62';
-    var fillColor = isReq ? '#1a2d44' : '#1e2d42';
-    var bw = f.w, bh = f.h;
-
-    ctx.save();
-    if(isReq){ ctx.shadowColor = BLUE; ctx.shadowBlur = 18*pulse; }
-    rr(f.x - bw/2, f.y - bh/2, bw, bh, 10);
-    ctx.fillStyle = fillColor; ctx.fill();
-    ctx.strokeStyle = borderColor; ctx.lineWidth = isReq ? 2 : 1; ctx.stroke();
-    ctx.restore();
-
-    if(isReq){
-      ctx.save();
-      ctx.globalAlpha = (1-pulse)*0.4;
-      ctx.strokeStyle = BLUE; ctx.lineWidth = 2;
-      rr(f.x - bw/2 - 6*pulse, f.y - bh/2 - 6*pulse, bw + 12*pulse, bh + 12*pulse, 13);
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    ctx.fillStyle = isReq ? '#ffffff' : '#c8d4e0';
-    ctx.font = (isReq ? '600' : '500') + ' 13px Inter,sans-serif';
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(f.label, f.x, f.y - 1);
-
-    if(isReq){
-      ctx.save();
-      ctx.globalAlpha = 0.7 + 0.3*pulse;
-      ctx.fillStyle = BLUE;
-      ctx.font = '500 10px Inter,sans-serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-      ctx.fillText('Anfrage', f.x, f.y - bh/2 - 8);
-      ctx.restore();
-    }
-  }
-
-  function drawHeadsetAdmin(x, y, r, color, fillColor, isBusy){
-    var s = r / 28;
-    ctx.save();
-    ctx.beginPath(); ctx.arc(x, y - 4*s, 12*s, 0, Math.PI*2);
-    ctx.fillStyle = fillColor; ctx.fill();
-    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x - 18*s, y + r - 2*s);
-    ctx.quadraticCurveTo(x - 18*s, y + 10*s, x - 10*s, y + 8*s);
-    ctx.quadraticCurveTo(x, y + 4*s, x + 10*s, y + 8*s);
-    ctx.quadraticCurveTo(x + 18*s, y + 10*s, x + 18*s, y + r - 2*s);
-    ctx.fillStyle = fillColor; ctx.fill();
-    ctx.strokeStyle = color; ctx.lineWidth = 1.2; ctx.stroke();
-    ctx.beginPath(); ctx.arc(x, y - 4*s, 14*s, Math.PI, 0, false);
-    ctx.strokeStyle = color; ctx.lineWidth = 2*s; ctx.stroke();
-    ctx.beginPath(); ctx.arc(x - 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
-    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill(); ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.arc(x + 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
-    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill(); ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.moveTo(x - 14*s, y - 1*s); ctx.lineTo(x - 9*s, y + 5*s);
-    ctx.strokeStyle = color; ctx.lineWidth = 1.5*s; ctx.stroke();
-    ctx.beginPath(); ctx.arc(x - 9*s, y + 5*s, 2*s, 0, Math.PI*2);
-    ctx.fillStyle = color; ctx.fill();
-    if(isBusy){
-      ctx.beginPath(); ctx.arc(x, y, r + 4, 0, Math.PI*2);
-      ctx.strokeStyle = color; ctx.lineWidth = 1.5;
-      ctx.globalAlpha = 0.35 + 0.25*Math.sin(frame*0.15);
-      ctx.stroke(); ctx.globalAlpha = 1;
-    }
-    ctx.restore();
-  }
-
-  function drawAdmin(a){
-    var isBusy = a.state === 'moving' || a.state === 'arrived';
-    var color  = isBusy ? GREEN : BLUE;
-    var fillColor = isBusy ? '#162820' : '#1e2d42';
-    ctx.save();
-    if(isBusy){ ctx.shadowColor = GREEN; ctx.shadowBlur = 16; }
-    drawHeadsetAdmin(a.x, a.y - 6, AR, color, fillColor, isBusy);
-    ctx.restore();
-    ctx.fillStyle = color;
-    ctx.font = (isBusy ? '600' : '500') + ' 11px Inter,sans-serif';
-    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-    ctx.fillText(a.label, a.x, a.y + AR - 6);
-  }
-
-  function tick(){
-    drawBG();
-    drawConnections();
-    firms.forEach(drawFirm);
-    admins.forEach(drawAdmin);
-
-    if(phase==='idle'){
-      if(--phaseTimer<=0) startSequence();
-    } else if(phase==='firm_pulse'){
-      if(--phaseTimer<=0){ phase='show_lines'; phaseTimer=30; }
-    } else if(phase==='show_lines'){
-      if(--phaseTimer<=0){ activeAdmin.state='moving'; phase='moving'; }
-    } else if(phase==='moving'){
-      var f=firms[activeFirm];
-      var tx=firmRight(f)+AR+4, ty=f.y;
-      var dx=tx-activeAdmin.x, dy=ty-activeAdmin.y;
-      activeAdmin.x+=dx*0.09; activeAdmin.y+=dy*0.09;
-      if(Math.sqrt(dx*dx+dy*dy)<3){ activeAdmin.state='arrived'; phase='arrived'; phaseTimer=100; }
-    } else if(phase==='arrived'){
-      var f=firms[activeFirm];
-      activeAdmin.x=firmRight(f)+AR+4; activeAdmin.y=f.y;
-      if(--phaseTimer<=0){ firms[activeFirm].state='idle'; activeAdmin.state='returning'; phase='returning'; }
-    } else if(phase==='returning'){
-      var dx=activeAdmin.hx-activeAdmin.x, dy=activeAdmin.hy-activeAdmin.y;
-      activeAdmin.x+=dx*0.08; activeAdmin.y+=dy*0.08;
-      if(Math.sqrt(dx*dx+dy*dy)<3){
-        activeAdmin.x=activeAdmin.hx; activeAdmin.y=activeAdmin.hy;
-        activeAdmin.state='idle';
-        activeAdmin=null; activeFirm=null; activeConn=null;
-        phase='idle'; phaseTimer=45;
-      }
-    }
-
-    frame++;
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
-</script>
 </body>
 </html>
