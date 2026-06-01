@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>geschke.group – IT-Verstärkung & Open Source aus Ibbenbüren</title>
+<meta name="description" content="geschke.group aus Ibbenbüren: Verstärkung für Ihre IT oder kompletter Betrieb als externe IT-Abteilung. Auf Open-Source-Basis – digitale Souveränität, Daten in Deutschland, keine Lizenzabhängigkeit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#23293a; --bg2:#2c3448; --bg3:#333d56;
+  --line:rgba(255,255,255,0.08); --line2:rgba(255,255,255,0.15);
+  --t1:#e8edf2; --t2:#8a9bb0; --t3:#7a8fa8;
+  --teal:#3b9eff; --teal-dim:rgba(59,158,255,0.1); --teal-glow:rgba(59,158,255,0.05);
+  --red-dim:rgba(240,100,90,0.13); --red-t:#f0796e;
+  --green-acc:#22c97a; --green-dim:rgba(34,201,122,0.1);
+  --gold:#e0b54a; --gold-dim:rgba(224,181,74,0.12);
+}
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--t1); line-height:1.6; font-size:15px; -webkit-font-smoothing:antialiased; }
+
+.wrap { width:100%; padding:0 1.25rem; margin:0 auto; }
+
+/* NAV */
+nav { position:sticky; top:0; z-index:100; background:rgba(35,41,58,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:0 1.25rem; }
+.nav-inner { height:52px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:var(--t1); text-decoration:none; }
+.nav-logo span { color:var(--teal); }
+.nav-links { display:none; }
+.nav-cta { font-size:13px; font-weight:500; color:#0d1117; background:var(--teal); padding:8px 16px; border-radius:6px; text-decoration:none; white-space:nowrap; }
+
+/* HERO */
+.hero { border-bottom:1px solid var(--line); }
+.hero-inner { display:flex; flex-direction:column; gap:2rem; padding:2.5rem 0; }
+.hero-eyebrow { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1.25rem; display:flex; align-items:center; gap:10px; }
+.hero-eyebrow::before { content:''; display:block; width:20px; height:1px; background:var(--teal); }
+h1 { font-family:'Syne',sans-serif; font-size:32px; font-weight:700; line-height:1.08; letter-spacing:-0.02em; margin-bottom:1.25rem; }
+h1 .accent { color:var(--teal); }
+h1 .dim { color:var(--t2); font-weight:400; }
+.hero-sub { font-size:15px; line-height:1.75; color:var(--t2); margin-bottom:2rem; }
+.hero-actions { display:flex; flex-direction:column; gap:.875rem; }
+.btn-primary { font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:#0d1117; background:var(--teal); padding:13px 24px; border-radius:8px; text-decoration:none; display:block; text-align:center; }
+.btn-ghost { font-size:14px; color:var(--t2); text-decoration:none; display:flex; align-items:center; gap:6px; }
+.hero-quote { background:var(--teal-dim); border:1px solid rgba(59,158,255,0.15); border-radius:12px; padding:1.125rem 1.25rem; }
+.hero-quote p { font-size:14px; line-height:1.65; color:var(--t1); font-style:italic; }
+.hero-quote cite { display:block; margin-top:8px; font-size:12px; color:var(--t2); font-style:normal; }
+
+/* PILLS (regionale Hinweise statt erfundener Zahlen) */
+.pills { border-bottom:1px solid var(--line); background:var(--bg2); }
+.pills-inner { display:flex; flex-wrap:wrap; gap:.5rem .75rem; padding:1rem 0; }
+.pill { font-size:12px; color:var(--t2); background:var(--bg3); border:1px solid var(--line); border-radius:20px; padding:5px 12px; }
+.pill b { color:var(--t1); font-weight:600; }
+
+/* SECTIONS */
+section { border-bottom:1px solid var(--line); }
+.sec-pad { padding:3rem 0; }
+.sec-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+.sec-label::before { content:''; display:block; width:16px; height:1px; background:var(--teal); }
+.sec-label.gold { color:var(--gold); }
+.sec-label.gold::before { background:var(--gold); }
+.sec-label.green { color:var(--green-acc); }
+.sec-label.green::before { background:var(--green-acc); }
+h2 { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; line-height:1.15; letter-spacing:-0.02em; margin-bottom:.875rem; }
+.sec-intro { font-size:15px; line-height:1.75; color:var(--t2); }
+
+/* PROBLEM */
+.problem-grid { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+.problem-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.25rem; position:relative; overflow:hidden; }
+.problem-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red-t); opacity:.45; }
+.problem-scenario { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; margin-bottom:.4rem; line-height:1.3; }
+.problem-desc { font-size:13px; color:var(--t2); line-height:1.65; }
+
+/* MODELLE / ENGAGEMENT */
+.modes { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+.mode-card { background:var(--bg2); border:1px solid var(--line2); border-radius:14px; padding:1.5rem; }
+.mode-tag { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); background:var(--teal-dim); border-radius:20px; padding:3px 11px; display:inline-block; margin-bottom:.9rem; }
+.mode-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:.5rem; }
+.mode-desc { font-size:14px; color:var(--t2); line-height:1.65; margin-bottom:1rem; }
+.mode-list { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
+.mode-list li { font-size:13px; color:var(--t2); display:flex; gap:8px; align-items:flex-start; }
+.mode-list li::before { content:'→'; color:var(--teal); }
+
+/* OPEN SOURCE TABLE */
+.os-intro-box { background:linear-gradient(135deg, rgba(34,201,122,0.08), rgba(59,158,255,0.06)); border:1px solid var(--line2); border-radius:14px; padding:1.25rem 1.5rem; margin-top:1.5rem; }
+.os-intro-box p { font-size:14px; color:var(--t1); line-height:1.7; }
+.compare-wrap { margin-top:1.5rem; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.compare-table { width:100%; border-collapse:collapse; min-width:560px; }
+.compare-table th { padding:12px 14px; font-size:12px; font-weight:600; text-align:left; border-bottom:1px solid var(--line2); color:var(--t1); }
+.compare-table th.hl { background:var(--green-dim); color:var(--green-acc); border-bottom-color:rgba(34,201,122,0.3); }
+.compare-table td { padding:12px 14px; font-size:12px; color:var(--t2); border-bottom:1px solid var(--line); vertical-align:middle; }
+.compare-table td.prop { color:var(--t3); }
+.compare-table td.oss { background:rgba(34,201,122,0.05); color:var(--t1); font-weight:500; }
+.compare-table tr:last-child td { border-bottom:none; }
+
+/* LEISTUNGEN */
+.serv-grid { display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2rem; }
+.serv-card { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.25rem; }
+.serv-ico { font-size:22px; margin-bottom:.6rem; display:block; }
+.serv-title { font-size:15px; font-weight:600; margin-bottom:.35rem; }
+.serv-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+
+/* TEAM */
+.team-text { margin-top:1.5rem; display:flex; flex-direction:column; gap:1rem; }
+.team-point { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.25rem; }
+.team-point .tp-title { font-size:14px; font-weight:600; margin-bottom:.25rem; }
+.team-point .tp-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+
+/* REGIONAL / WARUM */
+.why { background:linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%); }
+.why-grid { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+.why-card { background:var(--bg3); border:1px solid var(--line); border-radius:12px; padding:1.25rem; display:flex; gap:12px; align-items:flex-start; }
+.why-card .ico { font-size:20px; flex-shrink:0; }
+.why-card .wc-title { font-size:14px; font-weight:600; margin-bottom:3px; }
+.why-card .wc-desc { font-size:13px; color:var(--t2); line-height:1.6; }
+
+/* NOTFALL */
+.emergency { background:var(--red-dim); border:1px solid rgba(240,121,110,0.3); border-radius:14px; padding:1.5rem; margin-top:2rem; }
+.emergency h3 { font-family:'Syne',sans-serif; font-size:17px; margin-bottom:.5rem; color:var(--red-t); }
+.emergency p { font-size:13px; color:var(--t2); line-height:1.65; }
+
+/* CTA */
+.cta-section { padding:4rem 0; text-align:center; position:relative; overflow:hidden; border-bottom:none; }
+.cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59,158,255,0.05) 0%, transparent 70%); pointer-events:none; }
+.cta-section h2 { font-size:26px; margin-bottom:.875rem; }
+.cta-sub { font-size:15px; color:var(--t2); line-height:1.7; margin:0 auto 2rem; }
+.cta-actions { display:flex; flex-direction:column; align-items:center; gap:.875rem; }
+.btn-outline { font-size:14px; color:var(--t1); border:1px solid var(--line2); padding:12px 24px; border-radius:8px; text-decoration:none; display:block; width:100%; max-width:300px; text-align:center; }
+
+/* FOOTER */
+footer { padding:1.75rem 0; border-top:1px solid var(--line); }
+.footer-inner { display:flex; flex-direction:column; gap:.875rem; }
+.footer-copy { font-size:12px; color:var(--t3); }
+.footer-badges { display:flex; gap:8px; flex-wrap:wrap; }
+.footer-badge { font-size:11px; color:var(--t3); border:1px solid var(--line); border-radius:20px; padding:3px 10px; }
+.footer-version { margin-top:1rem; text-align:center; font-size:11px; color:var(--t3); letter-spacing:.04em; }
+
+/* TABLET */
+@media (min-width: 640px) {
+  .wrap { padding:0 2rem; }
+  .hero-actions { flex-direction:row; }
+  .btn-primary { display:inline-block; width:auto; text-align:left; }
+  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .modes { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .serv-grid { grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .cta-actions { flex-direction:row; justify-content:center; flex-wrap:wrap; }
+  .btn-outline { width:auto; }
+  .footer-inner { flex-direction:row; align-items:center; justify-content:space-between; }
+}
+
+/* DESKTOP */
+@media (min-width: 900px) {
+  .wrap { max-width:1020px; padding:0 2.5rem; }
+  nav { padding:0 2.5rem; }
+  .nav-inner { height:60px; }
+  .nav-links { display:flex; gap:1.75rem; list-style:none; }
+  .nav-links a { font-size:13px; color:var(--t2); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--t1); }
+  .hero-inner { flex-direction:row; align-items:center; gap:4rem; padding:5rem 0; }
+  .hero-inner > div:first-child { flex:1; }
+  .hero-right { flex:1; display:flex; flex-direction:column; gap:16px; }
+  h1 { font-size:clamp(34px,4.2vw,52px); }
+  .hero-sub { font-size:16px; }
+  .sec-pad { padding:5.5rem 0; }
+  h2 { font-size:clamp(26px,3vw,36px); }
+  .sec-intro { font-size:16px; max-width:760px; }
+  .cta-section { padding:7rem 0; }
+  .cta-section h2 { font-size:clamp(28px,3vw,42px); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">geschke<span>.</span>group</a>
+    <ul class="nav-links">
+      <li><a href="#situation">Die Lage</a></li>
+      <li><a href="#modelle">Zusammenarbeit</a></li>
+      <li><a href="#opensource">Open Source</a></li>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#regional">Regional</a></li>
+    </ul>
+    <a href="https://geschke.group/kontakt.html" class="nav-cta">Gespräch anfragen</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">geschke.group · Ibbenbüren</div>
+        <h1>Verstärkung für Ihre IT.<br><span class="dim">Aus der Region.</span> <span class="accent">Auf Open Source.</span></h1>
+        <p class="hero-sub">Ihre IT-Abteilung ist am Limit? Wir entlasten Ihr Team bei Spitzen und Spezialthemen — oder übernehmen den Betrieb ganz als Ihre externe IT-Abteilung. Persönlich, regional verankert und konsequent auf offene, datensouveräne Technologie gesetzt.</p>
+        <div class="hero-actions">
+          <a href="https://geschke.group/kontakt.html" class="btn-primary">Unverbindliches Gespräch</a>
+          <a href="#modelle" class="btn-ghost">Wie wir zusammenarbeiten →</a>
+        </div>
+      </div>
+      <div class="hero-right" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:1.5rem;">
+          <canvas id="bubble-canvas" width="520" height="380" style="width:100%;height:auto;display:block;border-radius:10px;"></canvas>
+        </div>
+        <div class="hero-quote">
+          <p>„Wir ersetzen Ihre IT nicht — wir verstärken sie. Und wir bauen sie so, dass Sie unabhängig bleiben: offen, dokumentiert, in Ihrer Hand."</p>
+          <cite>— Patrick Geschke, geschke.group</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIONALE EINORDNUNG (ehrlich, ohne erfundene Zahlen) -->
+<div class="pills">
+  <div class="wrap">
+    <div class="pills-inner">
+      <span class="pill"><b>Standort</b> Ibbenbüren</span>
+      <span class="pill"><b>Daten</b> in Deutschland</span>
+      <span class="pill"><b>DSGVO-konform</b></span>
+      <span class="pill"><b>Open Source</b> statt Lizenz-Lock-in</span>
+      <span class="pill"><b>Notfall-Support</b> per Fernwartung &amp; vor Ort</span>
+    </div>
+  </div>
+</div>
+
+<!-- SITUATION / PROBLEM -->
+<section id="situation">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Die Lage</div>
+    <h2>Gute IT-Leute sind knapp.<br>Die Aufgaben werden mehr.</h2>
+    <p class="sec-intro">Viele IT-Abteilungen — gerade in Verwaltung, Stadtwerken und regionalem Mittelstand — arbeiten am Anschlag: Fachkräftemangel, wachsende Anforderungen, teure Lizenzmodelle und eine Abhängigkeit von US-Cloud-Anbietern, die niemand so richtig wollte.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-scenario">Personalengpass</div>
+        <p class="problem-desc">Offene Stellen bleiben monatelang unbesetzt, das bestehende Team fängt alles auf. Projekte bleiben liegen, weil der Alltag schon voll ist.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-scenario">Wissen auf wenigen Schultern</div>
+        <p class="problem-desc">Fällt eine Schlüsselperson aus, wird es eng. Vieles ist nur in Köpfen, nicht dokumentiert — und damit nicht vertretbar.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-scenario">Teure Lizenz-Abhängigkeit</div>
+        <p class="problem-desc">Jahr für Jahr steigende Lizenzkosten, Funktionen hinter Paywalls, Daten in fremden Clouds. Kontrolle und Budget liegen woanders.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-scenario">Datensouveränität unklar</div>
+        <p class="problem-desc">Wo liegen die Daten wirklich? Wer hat Zugriff? Bei sensiblen Bürger- oder Unternehmensdaten ist das keine Nebensache.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELLE: BEIDE WEGE -->
+<section id="modelle">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Zusammenarbeit</div>
+    <h2>Zwei Wege — je nachdem, was Sie brauchen</h2>
+    <p class="sec-intro">Sie entscheiden, wie weit wir gehen. Beide Modelle lassen sich kombinieren und jederzeit anpassen.</p>
+    <div class="modes">
+      <div class="mode-card">
+        <span class="mode-tag">Modell 1</span>
+        <div class="mode-title">Verstärkung Ihres Teams</div>
+        <p class="mode-desc">Wir arbeiten Ihrer bestehenden IT zu — als verlängerte Werkbank für Spitzenlast, Projekte und Spezialthemen. Ihr Team behält die Hoheit, wir bringen Kapazität und Know-how dazu.</p>
+        <ul class="mode-list">
+          <li>Projekt- &amp; Spitzenlast abfedern</li>
+          <li>Spezial-Know-how (Linux, Netzwerk, Open Source)</li>
+          <li>Migrationen &amp; Infrastruktur-Aufbau</li>
+          <li>Vertretung bei Urlaub &amp; Ausfall</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <span class="mode-tag">Modell 2</span>
+        <div class="mode-title">Betrieb übernehmen — Admin-as-a-Service</div>
+        <p class="mode-desc">Wir übernehmen den laufenden IT-Betrieb ganz oder in Teilen — als Ihre externe IT-Abteilung. Inklusive Dokumentation, Monitoring und einem festen Ansprechpartner.</p>
+        <ul class="mode-list">
+          <li>Laufender Betrieb &amp; Wartung</li>
+          <li>Monitoring &amp; strukturierte Dokumentation</li>
+          <li>Fester Ansprechpartner statt Hotline-Schleife</li>
+          <li>Skaliert mit — ohne neue Stellen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN SOURCE -->
+<section id="opensource">
+  <div class="wrap sec-pad">
+    <div class="sec-label green">Open Source</div>
+    <h2>Unabhängig statt eingesperrt</h2>
+    <p class="sec-intro">Wir sind überzeugte Open-Source-Vorantreiber. Für jede gängige proprietäre Lösung gibt es eine ausgereifte, offene Alternative — die wir produktiv betreiben. Das Ergebnis: volle Datenkontrolle, planbare Kosten und keine Abhängigkeit von einem einzelnen Hersteller.</p>
+    <div class="os-intro-box">
+      <p>Open Source heißt nicht „Bastellösung". Es heißt: nachvollziehbare Sicherheit, Daten in Deutschland und die Freiheit, Ihre IT so zu betreiben, wie es zu Ihnen passt — nicht wie es ein Lizenzvertrag vorschreibt.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Proprietär</th>
+            <th class="hl" style="width:30%">Open-Source-Alternative</th>
+            <th style="width:40%">Ihr Vorteil</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="prop">Microsoft 365 / OneDrive</td>
+            <td class="oss">Nextcloud + OnlyOffice</td>
+            <td>Volle Datenkontrolle, keine US-Cloud — alles bleibt bei Ihnen</td>
+          </tr>
+          <tr>
+            <td class="prop">VMware vSphere / Hyper-V</td>
+            <td class="oss">Proxmox VE</td>
+            <td>Keine Lizenzabhängigkeit, flexible Cluster, planbare Kosten</td>
+          </tr>
+          <tr>
+            <td class="prop">Cisco / Fortinet / Sophos</td>
+            <td class="oss">OPNsense</td>
+            <td>Transparente Sicherheit, regelmäßige Updates, kein Hersteller-Lock-in</td>
+          </tr>
+          <tr>
+            <td class="prop">Microsoft Exchange Online</td>
+            <td class="oss">Mailcow</td>
+            <td>Volle Kontrolle über Postfächer, DSGVO-konform, Daten in DE</td>
+          </tr>
+          <tr>
+            <td class="prop">LastPass / 1Password</td>
+            <td class="oss">Vaultwarden</td>
+            <td>Zero-Knowledge — Ihre Passwörter bleiben unter Ihrer Kontrolle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Leistungen</div>
+    <h2>Was wir konkret machen</h2>
+    <p class="sec-intro">Vom einzelnen Server bis zur hybriden Netzwerkarchitektur — geplant, aufgebaut und betrieben.</p>
+    <div class="serv-grid">
+      <div class="serv-card">
+        <span class="serv-ico">🖥️</span>
+        <div class="serv-title">IT-Infrastruktur</div>
+        <div class="serv-desc">Planung, Aufbau und Betrieb moderner IT-Systeme — sicher, wartbar und auf Wachstum ausgelegt.</div>
+      </div>
+      <div class="serv-card">
+        <span class="serv-ico">🧑‍💻</span>
+        <div class="serv-title">Admin-as-a-Service</div>
+        <div class="serv-desc">Ihre externe IT-Abteilung — persönlich, flexibel, mit technischem Know-how für KMU und komplexe Umgebungen.</div>
+      </div>
+      <div class="serv-card">
+        <span class="serv-ico">📧</span>
+        <div class="serv-title">E-Mail mit Mailcow</div>
+        <div class="serv-desc">Professionelles, DSGVO-konformes E-Mail-Hosting auf Open-Source-Basis — volle Kontrolle über Ihre Daten.</div>
+      </div>
+      <div class="serv-card">
+        <span class="serv-ico">🌐</span>
+        <div class="serv-title">Webhosting</div>
+        <div class="serv-desc">Performant, zuverlässig, datenschutzkonform. Serverstandort Deutschland, klare Tarife.</div>
+      </div>
+      <div class="serv-card">
+        <span class="serv-ico">☎️</span>
+        <div class="serv-title">Cloud-Telefonie</div>
+        <div class="serv-desc">Flexible Telefonanlagen, die mitwachsen — skalierbar, zuverlässig, ohne Herstellerabhängigkeit.</div>
+      </div>
+      <div class="serv-card">
+        <span class="serv-ico">🛡️</span>
+        <div class="serv-title">Sicherheit &amp; Firewall</div>
+        <div class="serv-desc">Netzwerkschutz mit OPNsense und durchdachten Zugriffskonzepten — transparent und anpassbar.</div>
+      </div>
+    </div>
+
+    <div class="emergency">
+      <h3>🚨 IT-Notfall-Support</h3>
+      <p>Wenn Server ausfallen oder ein Angriff die IT lahmlegt, zählt jede Minute. Wir helfen schnell und strukturiert — per Fernwartung, telefonisch und bei Bedarf vor Ort. Kurze Wege aus der Region zahlen sich hier besonders aus.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap sec-pad">
+    <div class="sec-label">Das Team</div>
+    <h2>Ein interdisziplinäres Team — kein Einzelkämpfer</h2>
+    <p class="sec-intro">Hinter geschke.group steht ein Team aus Admins, Entwicklern und Strategen. Wir denken mit, handeln voraus und bleiben ruhig, wenn es ernst wird.</p>
+    <div class="team-text">
+      <div class="team-point">
+        <div class="tp-title">Mehrere Köpfe statt Abhängigkeit von einer Person</div>
+        <div class="tp-desc">Aufgaben und Wissen verteilen sich auf mehrere Schultern — Urlaub oder Ausfall legen Ihre IT nicht lahm.</div>
+      </div>
+      <div class="team-point">
+        <div class="tp-title">Dokumentation, die lebt</div>
+        <div class="tp-desc">Wir dokumentieren Ihre Umgebung nachvollziehbar und halten sie aktuell — damit Wissen vertretbar bleibt, nicht eingefroren in einer Schublade.</div>
+      </div>
+      <div class="team-point">
+        <div class="tp-title">Technik, die funktioniert</div>
+        <div class="tp-desc">Zuverlässigkeit, Performance und Sicherheit sind kein Marketing, sondern unser Arbeitsalltag — vom kleinen Setup bis zur hybriden Architektur.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONAL / WARUM WIR -->
+<section id="regional" class="why">
+  <div class="wrap sec-pad">
+    <div class="sec-label gold">Regional &amp; unabhängig</div>
+    <h2>Warum ein Partner aus Ibbenbüren?</h2>
+    <p class="sec-intro">Gerade für die öffentliche Hand und regionale Unternehmen zählt mehr als nur Technik: kurze Wege, Erreichbarkeit und ein Partner, der für digitale Souveränität statt Konzern-Abhängigkeit steht.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="ico">📍</span>
+        <div>
+          <div class="wc-title">Vor Ort statt Hotline</div>
+          <div class="wc-desc">Aus Ibbenbüren für die Region — schnelle Termine, Fernwartung und bei Bedarf persönlich vor Ort.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="ico">🇩🇪</span>
+        <div>
+          <div class="wc-title">Daten in Deutschland</div>
+          <div class="wc-desc">Serverstandort Deutschland und DSGVO-konforme Lösungen — keine ungewollte US-Cloud.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="ico">🔓</span>
+        <div>
+          <div class="wc-title">Open Source &amp; Unabhängigkeit</div>
+          <div class="wc-desc">Wir treiben offene Technologien voran — Sie bleiben unabhängig von Lizenzmodellen und einzelnen Herstellern.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <span class="ico">🤝</span>
+        <div>
+          <div class="wc-title">Entlasten, nicht verdrängen</div>
+          <div class="wc-desc">Wir arbeiten mit Ihrer IT zusammen, geben Wissen weiter und stärken Ihr Team — statt es zu ersetzen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta-section">
+    <div class="sec-label" style="justify-content:center">Jetzt sprechen</div>
+    <h2>Kein Pitch. Kein Verkaufsdruck.<br>Ein ehrliches Gespräch.</h2>
+    <p class="cta-sub">Wir schauen uns gemeinsam an, wo Ihre IT heute steht und wo wir entlasten können — unverbindlich, direkt, lösungsorientiert.</p>
+    <div class="cta-actions">
+      <a href="https://geschke.group/kontakt.html" class="btn-primary">Beratung anfragen</a>
+      <a href="tel:+4954515623400" class="btn-outline">+49 5451 562 34 0</a>
+      <a href="mailto:office@geschke.group" class="btn-outline">office@geschke.group</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 geschke.group · Gildestraße 6 · 49477 Ibbenbüren</span>
+      <div class="footer-badges">
+        <span class="footer-badge">DSGVO-konform</span>
+        <span class="footer-badge">Daten in Deutschland</span>
+        <span class="footer-badge">Linux &amp; Open Source</span>
+      </div>
+    </div>
+    <div class="footer-version">
+      Version 1.2.0-dev · index2dev · Hybrid-Entwurf zur Abstimmung
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var canvas = document.getElementById('bubble-canvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W=560, H=460;
+  canvas.width=W; canvas.height=H;
+
+  var BLUE='#3b9eff', GREEN='#22c97a', BG='#1a2030';
+  var LABEL_H=60;
+  var UH=H-LABEL_H;
+
+  var FW=160, FH=44;
+  var FX=120;
+
+  var firms=[
+    {label:'Verwaltung',  x:FX, y:LABEL_H+UH*0.2, w:FW, h:FH, state:'idle'},
+    {label:'Stadtwerke',  x:FX, y:LABEL_H+UH*0.5, w:FW, h:FH, state:'idle'},
+    {label:'Mittelstand', x:FX, y:LABEL_H+UH*0.8, w:FW, h:FH, state:'idle'},
+  ];
+
+  var AR=26;
+  var AX=460;
+
+  var admins=[
+    {label:'Admin A', hx:AX, hy:LABEL_H+UH*0.18, x:AX, y:LABEL_H+UH*0.18, state:'idle'},
+    {label:'Admin B', hx:AX, hy:LABEL_H+UH*0.40, x:AX, y:LABEL_H+UH*0.40, state:'idle'},
+    {label:'Dev C',   hx:AX, hy:LABEL_H+UH*0.62, x:AX, y:LABEL_H+UH*0.62, state:'idle'},
+    {label:'Admin D', hx:AX, hy:LABEL_H+UH*0.84, x:AX, y:LABEL_H+UH*0.84, state:'idle'},
+  ];
+
+  var connections=[
+    [0,0],[0,1],[0,3],
+    [1,1],[1,2],[1,3],
+    [2,0],[2,2],[2,3],
+  ];
+
+  var activeFirm=null, activeAdmin=null, activeConn=null;
+  var phase='idle', phaseTimer=80, frame=0;
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+  function startSequence(){
+    var fi=Math.floor(Math.random()*firms.length);
+    var conns=connections.filter(function(c){return c[0]===fi;});
+    var chosen=pick(conns);
+    activeFirm=fi;
+    activeConn=chosen;
+    activeAdmin=admins[chosen[1]];
+    firms[fi].state='requesting';
+    phase='firm_pulse';
+    phaseTimer=60;
+  }
+
+  function firmRight(f){ return f.x+f.w/2; }
+
+  function rr(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+    ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r);
+    ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h);
+    ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r);
+    ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath();
+  }
+
+  function drawBG(){
+    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='rgba(59,158,255,0.07)'; ctx.fillRect(0,0,W*0.47,LABEL_H);
+    ctx.fillStyle=BLUE; ctx.font='700 13px Inter,sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('IHRE ORGANISATION', FX, LABEL_H/2 - 1);
+    ctx.fillStyle='rgba(34,201,122,0.07)'; ctx.fillRect(W*0.47,0,W*0.53,LABEL_H);
+    ctx.fillStyle=GREEN; ctx.font='700 13px Inter,sans-serif';
+    ctx.fillText('GESCHKE.GROUP TEAM', W*0.47+(W*0.53)/2, LABEL_H/2 - 1);
+    ctx.save(); ctx.setLineDash([4,6]);
+    ctx.strokeStyle='rgba(255,255,255,0.08)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(W*0.47,LABEL_H); ctx.lineTo(W*0.47,H); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(0,LABEL_H); ctx.lineTo(W,LABEL_H); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawConnections(){
+    connections.forEach(function(conn){
+      var f=firms[conn[0]], a=admins[conn[1]];
+      var isActive=activeConn&&conn[0]===activeConn[0]&&conn[1]===activeConn[1];
+      var isBackup=activeFirm!==null&&conn[0]===activeFirm&&!isActive;
+      var isFirmActive=activeFirm!==null&&conn[0]===activeFirm;
+
+      if(isActive&&phase==='moving') return;
+      if(isActive&&(phase==='arrived'||phase==='returning')) return;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(firmRight(f), f.y);
+      ctx.lineTo(a.hx-AR, a.hy);
+
+      if(isFirmActive&&(phase==='show_lines')){
+        ctx.strokeStyle=BLUE; ctx.lineWidth=1.5; ctx.globalAlpha=0.55; ctx.setLineDash([4,5]);
+      } else if(isBackup&&(phase==='moving'||phase==='arrived')){
+        ctx.strokeStyle=BLUE; ctx.lineWidth=1.5; ctx.globalAlpha=0.3; ctx.setLineDash([4,5]);
+      } else {
+        ctx.strokeStyle='rgba(255,255,255,0.07)'; ctx.lineWidth=1; ctx.globalAlpha=1; ctx.setLineDash([3,7]);
+      }
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  function drawFirm(f){
+    var isReq = f.state === 'requesting';
+    var pulse  = 0.5 + 0.5*Math.sin(frame*0.14);
+    var borderColor = isReq ? BLUE : '#3b4a62';
+    var fillColor = isReq ? '#1a2d44' : '#1e2d42';
+    var bw = f.w, bh = f.h;
+
+    ctx.save();
+    if(isReq){ ctx.shadowColor = BLUE; ctx.shadowBlur = 18*pulse; }
+    rr(f.x - bw/2, f.y - bh/2, bw, bh, 10);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = borderColor; ctx.lineWidth = isReq ? 2 : 1; ctx.stroke();
+    ctx.restore();
+
+    if(isReq){
+      ctx.save();
+      ctx.globalAlpha = (1-pulse)*0.4;
+      ctx.strokeStyle = BLUE; ctx.lineWidth = 2;
+      rr(f.x - bw/2 - 6*pulse, f.y - bh/2 - 6*pulse, bw + 12*pulse, bh + 12*pulse, 13);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.fillStyle = isReq ? '#ffffff' : '#c8d4e0';
+    ctx.font = (isReq ? '600' : '500') + ' 13px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(f.label, f.x, f.y - 1);
+
+    if(isReq){
+      ctx.save();
+      ctx.globalAlpha = 0.7 + 0.3*pulse;
+      ctx.fillStyle = BLUE;
+      ctx.font = '500 10px Inter,sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+      ctx.fillText('Anfrage', f.x, f.y - bh/2 - 8);
+      ctx.restore();
+    }
+  }
+
+  function drawHeadsetAdmin(x, y, r, color, fillColor, isBusy){
+    var s = r / 28;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x, y - 4*s, 12*s, 0, Math.PI*2);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x - 18*s, y + r - 2*s);
+    ctx.quadraticCurveTo(x - 18*s, y + 10*s, x - 10*s, y + 8*s);
+    ctx.quadraticCurveTo(x, y + 4*s, x + 10*s, y + 8*s);
+    ctx.quadraticCurveTo(x + 18*s, y + 10*s, x + 18*s, y + r - 2*s);
+    ctx.fillStyle = fillColor; ctx.fill();
+    ctx.strokeStyle = color; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x, y - 4*s, 14*s, Math.PI, 0, false);
+    ctx.strokeStyle = color; ctx.lineWidth = 2*s; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x - 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.arc(x + 14*s, y - 4*s, 3.5*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.moveTo(x - 14*s, y - 1*s); ctx.lineTo(x - 9*s, y + 5*s);
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5*s; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x - 9*s, y + 5*s, 2*s, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
+    if(isBusy){
+      ctx.beginPath(); ctx.arc(x, y, r + 4, 0, Math.PI*2);
+      ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.35 + 0.25*Math.sin(frame*0.15);
+      ctx.stroke(); ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+  }
+
+  function drawAdmin(a){
+    var isBusy = a.state === 'moving' || a.state === 'arrived';
+    var color  = isBusy ? GREEN : BLUE;
+    var fillColor = isBusy ? '#162820' : '#1e2d42';
+    ctx.save();
+    if(isBusy){ ctx.shadowColor = GREEN; ctx.shadowBlur = 16; }
+    drawHeadsetAdmin(a.x, a.y - 6, AR, color, fillColor, isBusy);
+    ctx.restore();
+    ctx.fillStyle = color;
+    ctx.font = (isBusy ? '600' : '500') + ' 11px Inter,sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText(a.label, a.x, a.y + AR - 6);
+  }
+
+  function tick(){
+    drawBG();
+    drawConnections();
+    firms.forEach(drawFirm);
+    admins.forEach(drawAdmin);
+
+    if(phase==='idle'){
+      if(--phaseTimer<=0) startSequence();
+    } else if(phase==='firm_pulse'){
+      if(--phaseTimer<=0){ phase='show_lines'; phaseTimer=30; }
+    } else if(phase==='show_lines'){
+      if(--phaseTimer<=0){ activeAdmin.state='moving'; phase='moving'; }
+    } else if(phase==='moving'){
+      var f=firms[activeFirm];
+      var tx=firmRight(f)+AR+4, ty=f.y;
+      var dx=tx-activeAdmin.x, dy=ty-activeAdmin.y;
+      activeAdmin.x+=dx*0.09; activeAdmin.y+=dy*0.09;
+      if(Math.sqrt(dx*dx+dy*dy)<3){ activeAdmin.state='arrived'; phase='arrived'; phaseTimer=100; }
+    } else if(phase==='arrived'){
+      var f=firms[activeFirm];
+      activeAdmin.x=firmRight(f)+AR+4; activeAdmin.y=f.y;
+      if(--phaseTimer<=0){ firms[activeFirm].state='idle'; activeAdmin.state='returning'; phase='returning'; }
+    } else if(phase==='returning'){
+      var dx=activeAdmin.hx-activeAdmin.x, dy=activeAdmin.hy-activeAdmin.y;
+      activeAdmin.x+=dx*0.08; activeAdmin.y+=dy*0.08;
+      if(Math.sqrt(dx*dx+dy*dy)<3){
+        activeAdmin.x=activeAdmin.hx; activeAdmin.y=activeAdmin.hy;
+        activeAdmin.state='idle';
+        activeAdmin=null; activeFirm=null; activeConn=null;
+        phase='idle'; phaseTimer=45;
+      }
+    }
+
+    frame++;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
